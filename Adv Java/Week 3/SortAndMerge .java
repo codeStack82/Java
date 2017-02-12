@@ -4,8 +4,6 @@
 // Sort and Merge Homework - Part 1
 // Due: 2/12/17
 
-package sortandmerge;
-
 import java.io.BufferedWriter;
 import java.util.Scanner;
 import java.io.File;
@@ -155,7 +153,7 @@ public class SortAndMerge {
         //System.out.println(userHomeFolder);
         File textFile = new File(userHomeFolder, fileName);
         
-        BufferedWriter outputWriter = null;
+        BufferedWriter outputWriter;
         outputWriter = new BufferedWriter(new FileWriter(textFile));
       
         for (int i = 0; i < x.length; i++) {

@@ -1,4 +1,4 @@
-public class firstJavaProgram{
+public class testJavaProgram{
 	public static void main(String []args){
 		System.out.println("Hello World");
 	}	

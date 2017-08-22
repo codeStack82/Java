@@ -3,7 +3,7 @@
  * Advanced Java
  * OCCC Spring 2017
  * Assignment 1 
- * Due: 1/29/17
+ * Due: 08/22/17
  */
 
 import java.math.BigInteger;
@@ -21,7 +21,7 @@ public class BaseClassTest {
         if(args.length > 0){
             if(args.length == 3){
                 
-                  //display intro message
+                //display intro message
                 introMsg();
                 
                 //Prompt to get user string

@@ -1,7 +1,7 @@
 /*
  * Tyler Hunt
  * Advanced Java
- * OCCC Spring 2017
+ * OCCC Fall 2017
  * Assignment 1 
  * Due: 08/22/17
  */

@@ -107,7 +107,7 @@ public class BaseClassTest {
         //Contract: display error general message and exit
         //print directions
         String msg = "\nThere has been an error. " + 
-                     "\n\tThe program will now close";
+                     "\n\tThe program will now close, Sorry!";
         
         //print all
         println(msg);
@@ -309,7 +309,7 @@ public class BaseClassTest {
         StringBuilder sb1, sb2;
         sb1 = new StringBuilder();
         
-        Integer num = input.length();                           //get str length
+        Integer num = input.length();                         //get str length
         
         char[] userInput = input.toCharArray();               //convert to char array
         

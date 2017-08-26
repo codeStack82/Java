@@ -32,18 +32,20 @@ public class temp_Basic{
 
     }
     public static void introMessage(){
-        //Contract 
-        //  Print intro message 
+         //Contract 
+        //  Print intro message
+        //  @return -> void, no output  
         System.out.println("\n~~~~~~~~~~~~ Basic XXX Program - Advanced Java Week X ~~~~~~~~~~~~\n");
     }
 
 
     public static boolean isCmdLine(String [] args){
         //Contract 
-        //  @param -> args[], cmd line input array 
-        //  @param -> isCmd, check if input > 0 and == 3
-        //  @return ->  true or false
-        //  @Tested -> works good!
+        //  @notes:     Check to see if user started progam with cmd inputs
+        //  @param      args[], cmd line input array 
+        //  @param      isCmd, check if input > 0 and == 3
+        //  @return     boolean, predicate
+        //  @Tested     8/24/17
 
         boolean isCmd = false;
         isCmd = (args.length > 0 && args.length == 3) ? true : false;
@@ -51,6 +53,13 @@ public class temp_Basic{
     }
 
     public static String [] getParams(String [] args){
+         //Contract 
+        //  @notes:     get input from either cmd or user input
+        //  @param      args[], cmd line input array or manual user input array
+        //  @param      isCmd, boolean
+        //  @return     String array of user input
+        //  @Tested     8/24/17
+
         //Check if user entered cmd input
         boolean is_cmdLine = isCmdLine(args);
 
@@ -62,12 +71,10 @@ public class temp_Basic{
     }
 
     public static String [] get_inputParams(){
-        //Contract
-        //  Asks for 3 inputs from user
-        //  @params -> String, asks for user input
-        //  @params -> String, asks for user input        
-        //  @params -> String, asks for user input
-        //  @return -> String[] with user input values
+        //Contract 
+        //  @notes:     If no cmd input then get user input
+        //  @return     String array of user input
+        //  @Tested     8/25/17
 
 
         //Create input scanner
@@ -86,6 +93,10 @@ public class temp_Basic{
         System.out.print("\tEnter the new target base (Integer):  ");
         params[2] = input.nextLine();
 
+        //Close scanner object
+        input.close()
+
+        //return String []
         return params;
     }
 
@@ -95,7 +106,5 @@ public class temp_Basic{
             System.out.println("  "+i);
         }
     }
-
-
 }
 

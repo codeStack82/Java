@@ -54,15 +54,9 @@ public class Hunt_W1_BaseConversion{
 
         //Validate inputs
         userStr = format_InputString(userStr);
-        //System.out.printf("%s - %d - %d\n",userStr,initial_Base,target_Base);
-
-        //test convert function
-        //System.out.println("My Target base  ->16:\t " + convertBase(userStr, initial_Base, target_Base));
-
-        //boolean is_ValidBase = isValidBase(userStr, initial_Base);
-        //System.out.println(is_ValidBase);
-
-        boolean is_ValidBase = isValiderBase(userStr, initial_Base);
+        
+        //Check if user string is of corect base type
+        boolean is_ValidBase = isValidBase(userStr, initial_Base);
 
         if(is_ValidBase){
             //Actual
@@ -72,9 +66,9 @@ public class Hunt_W1_BaseConversion{
             System.out.println("\tTarget base  ->\t" + target_Base + ":\t " + str);
 
             System.out.println("\nMy function values");
-            String str1 = Integer.toString(convertBase(userStr, initial_Base, target_Base));
+            String str1 = Integer.toString(convertBaseTen(userStr, initial_Base));
             System.out.println("\tInitial base ->\t" + initial_Base + ":\t " + userStr);
-            System.out.println("\tTarget base  ->\t" + target_Base + ":\t " + str);
+            System.out.println("\tTarget base  ->\t" + target_Base + ":\t " + str1);
             //convert to base 10
             //convert to any desired base
             //print value
@@ -86,16 +80,33 @@ public class Hunt_W1_BaseConversion{
         }
     }//eoMain
 
-    public static int convertBase(String hex, int initial, int target){
+    public static int convertBaseTen(String num, int initial){
         int decVal = 0;
-        for(int i = 0; i < hex.length(); i++){
-            char hexChar = hex.charAt(i);
-            decVal = decVal * initial + hexCharToDec(hexChar);
+        BigInteger b1 = new BigInteger("0");
+        BigInteger b2 = new BigInteger("0");
+
+        for(int i = 0; i < num.length(); i++){
+            char numChar = num.charAt(i);
+
+            int x = initial + charToInt(numChar);
+            String y = Integer.toString(x);
+            String z = Integer.toString(decVal);
+
+            BigInteger initialPlusCharToInt = new BigInteger(y);
+            BigInteger decValue = new BigInteger(z);
+
+            b1 = decValue.multiply(initialPlusCharToInt);
+
+            decVal = decVal * initial + charToInt(numChar);  
+
+
+            System.out.printf("decVal: %d - initial: %d - charToInt:%d\n",decVal,initial,charToInt(numChar));
         }
+        System.out.print(b1.toString());
         return decVal;
     }
 
-    public static int hexCharToDec(char ch){
+    public static int charToInt(char ch){
         if(ch >= 'A' && ch <= 'F'){
             return 10 + ch - 'A';
         }else{
@@ -226,7 +237,7 @@ public class Hunt_W1_BaseConversion{
         return ""; 
     }
     
-    public static boolean isValiderBase(String userString, int base){
+    public static boolean isValidBase(String userString, int base){
          //Contract
         //  @notes      Check the base type against the input string for validity
         //  @params     userString, input to convert

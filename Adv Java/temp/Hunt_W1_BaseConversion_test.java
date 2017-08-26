@@ -34,12 +34,19 @@ import java.util.Scanner;
 import java.util.InputMismatchException;
 
 
-public class Hunt_W1_BaseConversion{
+public class Hunt_W1_BaseConversion_test{
     public static void main(String [] args){
         String userStr = "";
         int initial_Base = 0;
         int target_Base = 0;
 
+        int _A = (int)'A';
+         int _Z = (int)'Z';
+          int _a = (int)'a';
+           int _z = (int)'z';
+            int _0 = (int)'0';
+             int _9 = (int)'9';
+        System.out.printf("A: %d \n Z: %d \n a: %d \n z %d 0: %d \n 9: %d ",_A,_Z,_a,_a,_0,_9);
 
         //Display intro message
         introMessage();
@@ -55,19 +62,13 @@ public class Hunt_W1_BaseConversion{
         //Validate inputs
         userStr = validate_InputString(userStr);
         //System.out.printf("%s - %d - %d\n",userStr,initial_Base,target_Base);
-        System.out.println("My Target base  ->16:\t " + convertBase(userStr, initial_Base, target_Base));
-
+       
         boolean is_ValidBase = isValidBase(userStr, initial_Base);
         //System.out.println(is_ValidBase);
 
-        // if(is_ValidBase){
-        //     //Actual
-        //     String str = convertInput(userStr, initial_Base, target_Base);
-        //     System.out.println("Initial base ->\t" + initial_Base+ ":\t " + userStr);
-        //     System.out.println("Target base  ->\t" + target_Base + ":\t " + str);
-
-            
-        // }  
+        if(is_ValidBase){
+             System.out.println("My Target base  -> 16:\t " + convertBase(userStr, initial_Base)); 
+        }  
     }//eoMain
 
     public static void introMessage(){
@@ -89,7 +90,6 @@ public class Hunt_W1_BaseConversion{
         isCmd = (args.length > 0 && args.length == 3) ? true : false;
         return isCmd;
     }
-
     public static String [] getParams(String [] args){
         //Check if user entered cmd input
         boolean is_cmdLine = isCmdLine(args);
@@ -170,8 +170,7 @@ public class Hunt_W1_BaseConversion{
              return sb.toString(); 
         }
         return ""; 
-    }
-    
+    }    
     public static Boolean isValidBase(String userString, int base){
     //Contract: if input string is valid return valid
     
@@ -221,21 +220,42 @@ public class Hunt_W1_BaseConversion{
         return output;
     }
 
-    public static int convertBase(String hex, int initial, int target){
+    public static String convertBase(String hex, int initial){
         int decVal = 0;
-        for(int i = 0; i < hex.length(); i++){
-            char hexChar = hex.charAt(i);
-            decVal = decVal * initial + hexCharToDec(hexChar);
-        }
-        return decVal;
+        String retVal = "";
+       
+       
+        // BigInteger b3 = new BigInteger().ZERO;
+
+        // for(int i = 0; i < hex.length(); i++){
+        //     char hexChar = hex.charAt(i);
+        //     int Val = initial + hexCharToDec(hexChar);
+        //     //decVal = decVal * initial + hexCharToDec(hexChar);
+        //     BigInteger b1 = new BigInteger().intValue(Val);
+        //     BigInteger b2 = new BigInteger().ONE;
+        //     b3 = b2.multiply(b1);
+            
+        //     retVal = b3.toString();
+        // }
+
+        return retVal;
     }
 
     public static int hexCharToDec(char ch){
+       //Create sybmol array
+        char[] SYMBOLS = {'0','1','2','3','4','5','6','7','8','9','A','B'
+                        ,'C','D','E','F','G','H','I','J','K'
+                        ,'L','M','N','O','P','Q','R','S','T'
+                        ,'U','V','W','X','Y','Z'}; 
+       
         if(ch >= 'A' && ch <= 'F'){
+            System.out.print(ch - 'A');
             return 10 + ch - 'A';
         }else{
+            System.out.print(ch - '0');
             return ch - '0';
         }
+
     }
 
     public static void printArray(String[] arr){

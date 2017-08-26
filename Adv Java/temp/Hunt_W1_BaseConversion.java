@@ -59,18 +59,49 @@ public class Hunt_W1_BaseConversion{
         //test convert function
         //System.out.println("My Target base  ->16:\t " + convertBase(userStr, initial_Base, target_Base));
 
-        boolean is_ValidBase = isValidBase(userStr, initial_Base);
+        //boolean is_ValidBase = isValidBase(userStr, initial_Base);
         //System.out.println(is_ValidBase);
 
+        boolean is_ValidBase = isValiderBase(userStr, initial_Base);
+
         if(is_ValidBase){
-             //Actual
-             String str = convertInput(userStr, initial_Base, target_Base);
-             System.out.println("Initial base ->\t" + initial_Base+ ":\t " + userStr);
-             System.out.println("Target base  ->\t" + target_Base + ":\t " + str);
+            //Actual
+            System.out.println("Check value function");
+            String str = convertInput(userStr, initial_Base, target_Base);
+            System.out.println("\tInitial base ->\t" + initial_Base+ ":\t " + userStr);
+            System.out.println("\tTarget base  ->\t" + target_Base + ":\t " + str);
+
+            System.out.println("\nMy function values");
+            String str1 = Integer.toString(convertBase(userStr, initial_Base, target_Base));
+            System.out.println("\tInitial base ->\t" + initial_Base + ":\t " + userStr);
+            System.out.println("\tTarget base  ->\t" + target_Base + ":\t " + str);
+            //convert to base 10
+            //convert to any desired base
+            //print value
 
             
-        }  
+        }else{
+            System.out.println("The user input string '" + userStr + "' is not of base type " + initial_Base);
+            System.out.println("Sorry, Please try again some other time!");
+        }
     }//eoMain
+
+    public static int convertBase(String hex, int initial, int target){
+        int decVal = 0;
+        for(int i = 0; i < hex.length(); i++){
+            char hexChar = hex.charAt(i);
+            decVal = decVal * initial + hexCharToDec(hexChar);
+        }
+        return decVal;
+    }
+
+    public static int hexCharToDec(char ch){
+        if(ch >= 'A' && ch <= 'F'){
+            return 10 + ch - 'A';
+        }else{
+            return ch - '0';
+        }
+    }
 
     public static void introMessage(){
         //Contract 
@@ -195,40 +226,47 @@ public class Hunt_W1_BaseConversion{
         return ""; 
     }
     
-    public static Boolean isValidBase(String userString, int base){
-        //Contract
+    public static boolean isValiderBase(String userString, int base){
+         //Contract
         //  @notes      Check the base type against the input string for validity
         //  @params     userString, input to convert
         //  @params     base, base type of the input string
-        //  @return     boolean predicate   
+        //  @return     boolean predicate  
+        
+        char [] input = userString.toCharArray();
+        int maxChar = 0;
+        boolean isValid = false;
 
-    
-        Boolean isValid = false;                                    
-        
-        char[] userInput = userString.toCharArray();               
-        
-        //Create sybmol array
-        char[] SYMBOLS = {'0','1','2','3','4','5','6','7','8','9','A','B'
-                        ,'C','D','E','F','G','H','I','J','K'
-                        ,'L','M','N','O','P','Q','R','S','T'
-                        ,'U','V','W','X','Y','Z'}; 
-        
-            //loop to check base case str and check validity
-            for(int i = 0; i < userInput.length; ++i){
-                char check = userInput[i];
-                
-                //loop to check if initial base valid
-                for(int j=0; j < SYMBOLS.length; ++j){
-                    //Check if input is in correct base
-                     if( check == SYMBOLS[j] && j <= base){
-                         //System.out.println(check + " " + SYMBOLS[j]);
-                         isValid = true;
-                     }else if(check == SYMBOLS[j] && j > base){
-                         isValid = false;
-                 
-                    }
-                }
-            } 
+        for(int i = 0; i < input.length; i++){
+            char ch = input[i];
+            if(ch >= 'A' && ch <= 'X'){
+                // System.out.print(ch);   
+                // System.out.print("->");
+                // System.out.print((int)ch-54);
+                maxChar = ((int)ch > maxChar)? (int)ch-54: maxChar;
+
+            }else if(ch >= '0' && ch <= '9'){
+                // System.out.print(ch);
+                // System.out.print("->");
+                // System.out.print((int)ch-48);
+                maxChar = ((int)ch > maxChar)? (int)ch-48: maxChar;  
+            }
+            //System.out.println(); 
+        }
+
+        isValid = maxChar <= base ? true : false;
+
+        System.out.print("isValid: ");
+        System.out.print(isValid);
+        System.out.print("  -maxChar: ");
+        System.out.print(maxChar);
+        System.out.print("  -base: ");
+        System.out.println(base);
+
+        //test input string
+        //0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ
+
+        //return predicate for is valid
         return isValid;
     }
 
@@ -250,23 +288,6 @@ public class Hunt_W1_BaseConversion{
         output = Bi.toString(desiredBase);
         
         return output;
-    }
-
-    public static int convertBase(String hex, int initial, int target){
-        int decVal = 0;
-        for(int i = 0; i < hex.length(); i++){
-            char hexChar = hex.charAt(i);
-            decVal = decVal * initial + hexCharToDec(hexChar);
-        }
-        return decVal;
-    }
-
-    public static int hexCharToDec(char ch){
-        if(ch >= 'A' && ch <= 'F'){
-            return 10 + ch - 'A';
-        }else{
-            return ch - '0';
-        }
     }
 
     public static void printArray(String[] arr){

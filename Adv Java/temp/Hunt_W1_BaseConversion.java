@@ -62,13 +62,13 @@ public class Hunt_W1_BaseConversion{
             //Actual
             System.out.println("Check value function");
             String str = convertInput(userStr, initial_Base, target_Base);
-            System.out.println("\tInitial base ->\t" + initial_Base+ ":\t " + userStr);
-            System.out.println("\tTarget base  ->\t" + target_Base + ":\t " + str);
+                System.out.println("\tInitial base ->\t" + initial_Base+ ":\t " + userStr);
+                System.out.println("\tTarget base  ->\t" + target_Base + ":\t " + str);
 
             System.out.println("\nMy function values");
-            String str1 = Integer.toString(convertBaseTen(userStr, initial_Base));
-            System.out.println("\tInitial base ->\t" + initial_Base + ":\t " + userStr);
-            System.out.println("\tTarget base  ->\t" + target_Base + ":\t " + str1);
+            String str1 = convertBases(userStr, initial_Base, target_Base);
+                System.out.println("\tInitial base ->\t" + initial_Base + ":\t " + userStr);
+                System.out.println("\tTarget base  ->\t" + target_Base + ":\t " + str1);
             //convert to base 10
             //convert to any desired base
             //print value
@@ -106,6 +106,10 @@ public class Hunt_W1_BaseConversion{
         return decVal;
     }
 
+    public static String convertBases(String input, int i_base, int t_base){
+        BigInteger converted = new BigInteger(input, 8).toString(10);
+        return converted.toString();
+    }
     public static int charToInt(char ch){
         if(ch >= 'A' && ch <= 'F'){
             return 10 + ch - 'A';

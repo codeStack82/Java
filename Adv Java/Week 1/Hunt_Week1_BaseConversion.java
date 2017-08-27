@@ -57,10 +57,9 @@ public class Hunt_Week1_BaseConversion{
             boolean is_ValidBase = isValidBase(userStr, initial_Base);
 
             if(is_ValidBase){
-                System.out.println("\nMy function values");
                 String str = convertBases(userStr, initial_Base, target_Base);
-                System.out.println("\tInitial base ->\t" + initial_Base + ":\t " + userStr);
-                System.out.println("\tTarget base  ->\t" + target_Base + ":\t " + str);       
+                System.out.println("Initial base ->\t" + initial_Base + ":\t " + userStr);
+                System.out.println("Target base  ->\t" + target_Base + ":\t " + str);       
             }else{
                 System.out.println("\nThe user input string '" + userStr + "' is not of base type " + initial_Base);
                 System.out.println("\tSorry, Please try again some other time!");
@@ -76,7 +75,7 @@ public class Hunt_Week1_BaseConversion{
         //Contract 
         //  Print intro message
         //  @return -> void, no output 
-        System.out.println("\n~~~~~~~~~~~~ Base Conversion Program - Advanced Java Week 1 ~~~~~~~~~~~~\n");
+        System.out.println("\n~~~~~~~~~~~~~~~~~~~~~~ Base Conversion Program - Advanced Java Week 1 ~~~~~~~~~~~~~~~~~~~~~~\n");
         System.out.println("This Program converts a string input from it's initial base to a different target base.\n");
         System.out.println("Please, enter a string, an initial base (integer), and a target base (integer) for conversion.");
     }

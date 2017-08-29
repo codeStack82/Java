@@ -57,15 +57,15 @@ public class Hunt_Week1_BaseConversion{
             boolean is_ValidBase = isValidBase(userStr, initial_Base);
 
             if(is_ValidBase){
-                String str = convertBases(userStr, initial_Base, target_Base);
-                System.out.println("Initial base ->\t" + initial_Base + ":\t " + userStr);
-                System.out.println("Target base  ->\t" + target_Base + ":\t " + str);       
+                String output = convertBases(userStr, initial_Base, target_Base);
+                System.out.println("\nInitial base ->\t" + initial_Base + ":\t " + userStr);
+                System.out.println("Target base  ->\t" + target_Base + ":\t " + output +"\n");       
             }else{
                 System.out.println("\nThe user input string '" + userStr + "' is not of base type " + initial_Base);
                 System.out.println("\tSorry, Please try again some other time!");
             }
         }catch(Exception ex){
-            System.out.println("Apparently, there has been some sort of weird/random anolomy is this program????");
+            System.out.println("Apparently, there has been some sort of wierd/random anolomy is this program????");
             System.out.println("\tThe program will now exit, Sorry!");
             System.exit(1);
         }
@@ -106,7 +106,7 @@ public class Hunt_Week1_BaseConversion{
         //  @param      args[], cmd line input array or manual user input array
         //  @param      isCmd, boolean
         //  @return     String array of user input
-        //  @Tested     8/24/17
+        //  @tested     8/24/17
 
         //Check if user entered cmd input
         boolean is_cmdLine = isCmdLine(args);

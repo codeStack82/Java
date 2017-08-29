@@ -280,7 +280,29 @@ public class Hunt_Week1_BaseConversion{
         return output;
     }
     
-    public static int convertBaseTen(String num, int initial){
+
+    public static int convertBaseTen_Int(String num, int initial){
+        int decVal = 0;
+     
+        for(int i = 0; i < num.length(); i++){
+            char numChar = num.charAt(i);
+
+            decVal = decVal * initial + charToInt(numChar);  
+
+            System.out.printf("decVal: %d - initial: %d - charToInt:%d\n",decVal,initial,charToInt(numChar));
+        }
+        return decVal;
+    }
+
+      public static int charToInt(char ch){
+        if(ch >= 'A' && ch <= 'F'){
+            return 10 + ch - 'A';
+        }else{
+            return ch - '0';
+        }
+    }
+
+    public static int convertBaseTen_BigInt(String num, int initial){
         int decVal = 0;
         BigInteger b1 = new BigInteger("0");
         BigInteger b2 = new BigInteger("0");
@@ -305,13 +327,4 @@ public class Hunt_Week1_BaseConversion{
         System.out.print(b1.toString());
         return decVal;
     }
-
-    public static int charToInt(char ch){
-        if(ch >= 'A' && ch <= 'F'){
-            return 10 + ch - 'A';
-        }else{
-            return ch - '0';
-        }
-    }
-
 }

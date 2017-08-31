@@ -59,7 +59,12 @@ public class Hunt_Week1_BaseConversion{
             if(is_ValidBase){
                 String output = convertBases(userStr, initial_Base, target_Base);
                 System.out.println("\nInitial base ->\t" + initial_Base + ":\t " + userStr);
-                System.out.println("Target base  ->\t" + target_Base + ":\t " + output +"\n");       
+                System.out.println("Target base  ->\t" + target_Base + ":\t " + output +"\n");
+
+                String output1 = convertBaseTen_BigInt(userStr, initial_Base); 
+                System.out.println("\nBigInt - Initial base ->\t" + initial_Base + ":\t " + userStr);
+                System.out.println("BigInt - Target base  ->\t" + "10" + ":\t " + output1 +"\n");
+
             }else{
                 System.out.println("\nThe user input string '" + userStr + "' is not of base type " + initial_Base);
                 System.out.println("\tSorry, Please try again some other time!");
@@ -129,15 +134,15 @@ public class Hunt_Week1_BaseConversion{
         String [] params = new String[3];
 
         //Get string param
-        System.out.print("\tEnter a string to convert (String): ");
+        System.out.print("\tEnter a string to convert (String):\t");
         params[0] = input.nextLine();
 
         //Get initial base param
-        System.out.print("\tEnter the initial base (Integer):  ");
+        System.out.print("\tEnter the initial base (Integer):\t");
         params[1] = input.nextLine();
 
         //Get target base param
-        System.out.print("\tEnter the new target base (Integer):  ");
+        System.out.print("\tEnter the new target base (Integer):\t");
         params[2] = input.nextLine();
 
         //Close scanner object
@@ -162,9 +167,8 @@ public class Hunt_Week1_BaseConversion{
                         "\nThe value '" + input.toString() + "' is not a correct integer base value" + 
                         "\n\tThe program will now close, Sorry!";
             
-            //print
+            //print error message
             System.out.println(msg);
-            
             System.exit(0);
         }
         return base;
@@ -280,7 +284,14 @@ public class Hunt_Week1_BaseConversion{
         return output;
     }
     
-
+    public static int charToInt(char ch){
+        if(ch >= 'A' && ch <= 'F'){
+            return 10 + ch - 'A';
+        }else{
+            return ch - '0';
+        }
+    }
+    
     public static int convertBaseTen_Int(String num, int initial){
         int decVal = 0;
      
@@ -289,42 +300,32 @@ public class Hunt_Week1_BaseConversion{
 
             decVal = decVal * initial + charToInt(numChar);  
 
-            System.out.printf("decVal: %d - initial: %d - charToInt:%d\n",decVal,initial,charToInt(numChar));
         }
         return decVal;
     }
 
-      public static int charToInt(char ch){
-        if(ch >= 'A' && ch <= 'F'){
-            return 10 + ch - 'A';
-        }else{
-            return ch - '0';
-        }
-    }
-
-    public static int convertBaseTen_BigInt(String num, int initial){
-        int decVal = 0;
-        BigInteger b1 = new BigInteger("0");
-        BigInteger b2 = new BigInteger("0");
+    public static String convertBaseTen_BigInt(String num, int initial){
+    
+        BigInteger decValue = BigInteger.ZERO;
+        BigInteger retVal = BigInteger.ZERO;
 
         for(int i = 0; i < num.length(); i++){
             char numChar = num.charAt(i);
+             System.out.print(numChar + " =");
+            //decVal = decVal * initial + charToInt(numChar); 
+            int initial_charToInt =  initial + charToInt(numChar); 
+            BigInteger init_charToInt = BigInteger.valueOf(initial_charToInt);
+            System.out.print(init_charToInt + " *");
 
-            int x = initial + charToInt(numChar);
-            String str_initial_BasePlusCharToInt = Integer.toString(x);
-            String str_DecVal = Integer.toString(decVal);
-
-            BigInteger initialPlusCharToInt = new BigInteger(str_initial_BasePlusCharToInt);
-            BigInteger decValue = new BigInteger(str_DecVal);
-
-            b1 = decValue.multiply(initialPlusCharToInt);
+            decValue = decValue.multiply(init_charToInt);
+            System.out.print(decValue );
 
             //decVal = decVal * initial + charToInt(numChar);  
 
-
             //System.out.printf("decVal: %d - initial: %d - charToInt:%d\n",decVal,initial,charToInt(numChar));
         }
-        System.out.print(b1.toString());
-        return decVal;
+        String x = decValue.toString();
+        System.out.print(x);
+        return "n";
     }
 }

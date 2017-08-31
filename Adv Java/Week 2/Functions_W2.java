@@ -12,7 +12,8 @@ import java.util.Scanner;
 
 
 public class Functions_W2 {
-    
+    public static long fval[];
+
     public static long factorial_loop(int n){
         long factorial = 1;
         if(n<0){
@@ -47,10 +48,10 @@ public class Functions_W2 {
     }
     
     public static long fib_Loop(long n){
-        long result=0;
-        long num1 = 0;
-        long num2 = 1;
-         for (long i = 1; i <= n; i++) {
+        long result = 1;
+        long num1   = 1;
+        long num2   = 1;
+         for (long i = 1; i < n; i++) {
             num1 = num1 + num2;
             num2 = num1 - num2;
             
@@ -87,7 +88,7 @@ public class Functions_W2 {
         BigInteger x = BigInteger.ONE;
         if(n<1){
             throw new IllegalArgumentException("Cannot compute fibonacci of negative index or 0");
-        }else if(1 ==n || 2 ==n){
+        }else if(1 == n || 2 == n){
             return x;
         }
         else{
@@ -121,14 +122,14 @@ public class Functions_W2 {
         long startTime = System.nanoTime();  
 
         //Display output    -Change out below function as needed
-        System.out.println( n + "! = " + fib_BigInt_MemLoop(n));
+        System.out.println( n + "! = " + fib_Long_Memloop(n));
 
         //Calculate elapsed time
         long estimatedTime = System.nanoTime() - startTime;        
         double seconds = (double)estimatedTime / 1000000000;
 
         //Display ouputs
-        System.out.println("The elapsed time is " + (seconds)  + " seconds.");
+        System.out.println("The elapsed time is " + (seconds)  + " seconds.\n");
     }
   
     public static void main(String[] args) {
@@ -168,4 +169,3 @@ public class Functions_W2 {
         } 
     }
     
-

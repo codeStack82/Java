@@ -305,27 +305,28 @@ public class Hunt_Week1_BaseConversion{
     }
 
     public static String convertBaseTen_BigInt(String num, int initial){
-    
-        BigInteger decValue = BigInteger.ZERO;
-        BigInteger retVal = BigInteger.ZERO;
-
+        //will try reversing string in function 
+        BigInteger result_BigInt = BigInteger.ZERO;
+        int result = 0;
         for(int i = 0; i < num.length(); i++){
             char numChar = num.charAt(i);
-             System.out.print(numChar + " =");
+             //System.out.println(" -> "+ numChar);
             //decVal = decVal * initial + charToInt(numChar); 
-            int initial_charToInt =  initial + charToInt(numChar); 
-            BigInteger init_charToInt = BigInteger.valueOf(initial_charToInt);
-            System.out.print(init_charToInt + " *");
 
-            decValue = decValue.multiply(init_charToInt);
-            System.out.print(decValue );
+            int charToInt = charToInt(numChar); 
 
-            //decVal = decVal * initial + charToInt(numChar);  
+            //System.out.println("result = " + result + " * " + initial + " + "+ charToInt);
+            result = (result * initial) + charToInt(numChar);  
+            
+            System.out.println("result_BigInt = " + result_BigInt + " * " + initial + " + " + charToInt);
+            result_BigInt = result_BigInt.multiply(BigInteger.valueOf(initial));
 
-            //System.out.printf("decVal: %d - initial: %d - charToInt:%d\n",decVal,initial,charToInt(numChar));
+            result_BigInt = result_BigInt.add(BigInteger.valueOf(charToInt));
+
+            //System.out.print(retVal);
         }
-        String x = decValue.toString();
-        System.out.print(x);
-        return "n";
+    
+        String x = result_BigInt.toString();
+        return x;
     }
 }

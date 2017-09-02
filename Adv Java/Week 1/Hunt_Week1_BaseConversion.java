@@ -29,7 +29,11 @@
 */
 
 import java.math.BigInteger;
+import java.lang.StringBuilder;
 import java.util.Scanner;
+
+import jdk.nashorn.internal.runtime.QuotedStringTokenizer;
+
 import java.util.InputMismatchException;
 
 public class Hunt_Week1_BaseConversion{
@@ -57,14 +61,15 @@ public class Hunt_Week1_BaseConversion{
             boolean is_ValidBase = isValidBase(userStr, initial_Base);
 
             if(is_ValidBase){
-                String output = convertBases(userStr, initial_Base, target_Base);
-                System.out.println("\nInitial base ->\t" + initial_Base + ":\t " + userStr);
-                System.out.println("Target base  ->\t" + target_Base + ":\t " + output +"\n");
+                // My custom function built using BigInt - Not useing the BigInt built in classes
+                String output1 = convertToBaseTen_BigInt(userStr, initial_Base, target_Base); 
+                    System.out.println("\nBigInt - Initial base ->  " + initial_Base + ":   " + userStr);
+                    System.out.println("BigInt - Target base  ->  " + target_Base + ":  " + output1 +"\n");
 
-                String output1 = convertToBaseTen_BigInt(userStr, initial_Base); 
-                System.out.println("\nBigInt - Initial base ->\t" + initial_Base + ":\t " + userStr);
-                System.out.println("BigInt - Target base  ->\t" + "10" + ":\t " + output1 +"\n");
-
+                // Testing function to confirm output    
+                String output2 = convertBases(userStr, initial_Base, target_Base);
+                    System.out.println("Built-In - Initial base ->\t" + initial_Base + ":\t " + userStr);
+                    System.out.println("Built-In - Target base  ->\t" + target_Base + ":\t " + output2 +"\n");
             }else{
                 System.out.println("\nThe user input string '" + userStr + "' is not of base type " + initial_Base);
                 System.out.println("\tSorry, Please try again some other time!");
@@ -82,7 +87,7 @@ public class Hunt_Week1_BaseConversion{
         //  @return void
         System.out.println("\n~~~~~~~~~~~~~~~~~~~~~~ Base Conversion Program - Advanced Java Week 1 ~~~~~~~~~~~~~~~~~~~~~~\n");
         System.out.println("This Program converts a string input from it's initial base to a different target base.\n");
-        System.out.println("Please, enter a string, an initial base (integer), and a target base (integer) for conversion.");
+        System.out.println("Enter a string, an initial base (integer), and a target base (integer) for conversion.");
     }
 
     public static boolean isCmdLine(String [] args){
@@ -248,7 +253,7 @@ public class Hunt_Week1_BaseConversion{
         return isValid;
     }
 
-    public static String convertToBaseTen_BigInt(String input, int i_Base){
+    public static String convertToBaseTen_BigInt(String input, int i_base, int t_base){
         //Contract
         //  @param  String input, user input value
         //  @param  int i_base, initial base value
@@ -261,10 +266,13 @@ public class Hunt_Week1_BaseConversion{
             int charToInt = charToInt(numChar);
             
             //System.out.println("result_BigInt = " + result_BigInt + " * " + i_Base + " + " + charToInt);
-            result_BigInt = result_BigInt.multiply(BigInteger.valueOf(i_Base));
+            result_BigInt = result_BigInt.multiply(BigInteger.valueOf(i_base));
             result_BigInt = result_BigInt.add(BigInteger.valueOf(charToInt));
         }
-        return result_BigInt.toString();
+        //Convert to new target base
+        String retVal = convertFromBaseTen_BigInt(result_BigInt,t_base);
+
+        return retVal;
     }
 
     public static int charToInt(char ch){
@@ -291,6 +299,35 @@ public class Hunt_Week1_BaseConversion{
         return converted.toString(t_base);
     }
 
+    public static void convertFromBaseTen_BigInt(String input, int t_base){
+        //Contract
+        //  @param  String input, user input value as base ten value
+        //  @param  int t_base, target base value
+        //  @return String, returns value desired base
+        //  @reference  https://mathbits.com/MathBits/CompSci/Introduction/frombase10.htm
+
+        StringBuilder result = "";
+        BigInteger quotient = BigInteger.ZERO;
+        BigInteger remainder = BigInteger.ZERO;
+        BigInteger input_BigInt = BigInteger.valueOf(input);
+
+        //TODO: Need to fix loop and check the function performance
+       for(input_BigInt;){
+
+            System.out.printf("input: %s ", input);
+            quotient = input_BigInt.divide(BigInteger.valueOf(t_base));
+            remainder  = quotient.mod( BigInteger.valueOf(t_base));
+
+            System.out.printf("quotient: %s remainder %s", quotient, remainder);
+
+            input_BigInt = quotient;
+            result.add(input_BigInt.toString());
+
+        }
+        System.out.println(result.toString());
+        //return result.toString();
+    }
+
     public static void printArray(String[] arr){
         //Contract
         //  @param  string array
@@ -302,7 +339,6 @@ public class Hunt_Week1_BaseConversion{
             System.out.println(i);
         }
     }
-    
     
     public static int convertToBaseTen_Int(String num, int initial){
         int decVal = 0;

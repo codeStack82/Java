@@ -61,7 +61,7 @@ public class Hunt_Week1_BaseConversion{
                 System.out.println("\nInitial base ->\t" + initial_Base + ":\t " + userStr);
                 System.out.println("Target base  ->\t" + target_Base + ":\t " + output +"\n");
 
-                String output1 = convertBaseTen_BigInt(userStr, initial_Base); 
+                String output1 = convertToBaseTen_BigInt(userStr, initial_Base); 
                 System.out.println("\nBigInt - Initial base ->\t" + initial_Base + ":\t " + userStr);
                 System.out.println("BigInt - Target base  ->\t" + "10" + ":\t " + output1 +"\n");
 
@@ -74,12 +74,12 @@ public class Hunt_Week1_BaseConversion{
             System.out.println("\tThe program will now exit, Sorry!");
             System.exit(1);
         }
-    }//eoMain
+    }
 
     public static void introMessage(){
         //Contract 
-        //  Print intro message
-        //  @return -> void, no output 
+        //  @print  prints intro message
+        //  @return void
         System.out.println("\n~~~~~~~~~~~~~~~~~~~~~~ Base Conversion Program - Advanced Java Week 1 ~~~~~~~~~~~~~~~~~~~~~~\n");
         System.out.println("This Program converts a string input from it's initial base to a different target base.\n");
         System.out.println("Please, enter a string, an initial base (integer), and a target base (integer) for conversion.");
@@ -87,11 +87,10 @@ public class Hunt_Week1_BaseConversion{
 
     public static boolean isCmdLine(String [] args){
         //Contract 
-        //  @notes:     Check to see if user started progam with cmd inputs
         //  @param      args[], cmd line input array 
         //  @param      isCmd, check if input > 0 and == 3
         //  @return     boolean, predicate
-        //  @Tested     8/24/17
+        //  @notes:     Check to see if user started progam with cmd inputs
 
         boolean isCmd = false;
         isCmd = (args.length > 0 && args.length == 3) ? true : false;
@@ -107,11 +106,10 @@ public class Hunt_Week1_BaseConversion{
 
     public static String [] getParams(String [] args){
         //Contract 
-        //  @notes:     get input from either cmd or user input
         //  @param      args[], cmd line input array or manual user input array
         //  @param      isCmd, boolean
         //  @return     String array of user input
-        //  @tested     8/24/17
+        //  @notes:     get input from either cmd or user input
 
         //Check if user entered cmd input
         boolean is_cmdLine = isCmdLine(args);
@@ -125,9 +123,8 @@ public class Hunt_Week1_BaseConversion{
 
     public static String [] getinputParams(){
         //Contract 
-        //  @notes:     If no cmd input then get user input
         //  @return     String array of user input
-        //  @Tested     8/25/17
+        //  @notes:     If no cmd input then get user input
 
         //Create input scanner
         Scanner input = new Scanner(System.in);
@@ -153,7 +150,11 @@ public class Hunt_Week1_BaseConversion{
     }
 
     public static int convertToInt(String input){
-        //Contract: process cmd input
+        //Contract
+        //  @param  String input, user input integer value
+        //  @return int, return string value as integer
+        //  @notes  try/catch forany random errors then system exit
+
         int base = 0;
         
         try{
@@ -161,8 +162,6 @@ public class Hunt_Week1_BaseConversion{
             base = Integer.parseInt(input);
             
         }catch(Exception ex){
-            //Contract: display error general message and exit
-            //print directions
             String msg = "\nThere has been an error with your input values.... " + 
                         "\nThe value '" + input.toString() + "' is not a correct integer base value" + 
                         "\n\tThe program will now close, Sorry!";
@@ -176,9 +175,9 @@ public class Hunt_Week1_BaseConversion{
 
     public static String formatInputString(String input){
         //Contract
-        //  @notes      formatt the users input, remove junk & then uppercase all
         //  @params     input, input to convert
         //  @return     sformatted String value
+        //  @notes      formatt the users input, remove junk & then uppercase all
             
         StringBuilder sb = new StringBuilder();
         
@@ -206,11 +205,11 @@ public class Hunt_Week1_BaseConversion{
     }
 
     public static boolean isValidBase(String userString, int base){
-         //Contract
-        //  @notes      Check the base type against the input string for validity
+        //Contract
         //  @params     userString, input to convert
         //  @params     base, base type of the input string
         //  @return     boolean predicate  
+        //  @notes      Check the base type against the input string for validity
         
         char [] input = userString.toCharArray();
         int maxChar = 0;
@@ -249,50 +248,63 @@ public class Hunt_Week1_BaseConversion{
         return isValid;
     }
 
-    public static String convertBases(String input, int i_base, int t_base){
-        BigInteger converted = new BigInteger(input, i_base);
-        return converted.toString(t_base);
-    }
-
-    public static void printArray(String[] arr){
+    public static String convertToBaseTen_BigInt(String input, int i_Base){
         //Contract
-        //  @notes  helper function to test print single dim array values
-        System.out.println("User Parameters:");
-        for (String i : arr) {
-            System.out.println(i);
-        }
-    }
+        //  @param  String input, user input value
+        //  @param  int i_base, initial base value
+        //  @return String, returns value as base ten(decimal) 
 
-    //Test functions
-    public static String convertInput(String input, Integer initialBase, Integer desiredBase){
-        //Contract: Take string, initial base, desired base and convert; 
-        //          utilize BigInt then return string
-        //          Conversion resource info here: 
-        //              https://docs.oracle.com/javase/7/docs/api/java/math/BigInteger.html
-        //              http://www.kaagaard.dk/service/convert.htm
-        //              http://www-rohan.sdsu.edu/~pwbrock/files/UNIT4.3.pdf
-        
-        String output = "";
+        BigInteger result_BigInt = BigInteger.ZERO;
 
-        // checks if initial base and out are same if so then return input
-        //output = (initialBase==desiredBase)? input: "";
+        for(int i = 0; i < input.length(); i++){
+            char numChar = input.charAt(i);
+            int charToInt = charToInt(numChar);
             
-        BigInteger Bi = new BigInteger(input,initialBase);
-        
-        output = Bi.toString(desiredBase);
-        
-        return output;
+            //System.out.println("result_BigInt = " + result_BigInt + " * " + i_Base + " + " + charToInt);
+            result_BigInt = result_BigInt.multiply(BigInteger.valueOf(i_Base));
+            result_BigInt = result_BigInt.add(BigInteger.valueOf(charToInt));
+        }
+        return result_BigInt.toString();
     }
-    
+
     public static int charToInt(char ch){
+       //Contract
+        //  @param  char ch, convert ch to int eqivelent
+        //  @return int, converted int value
         if(ch >= 'A' && ch <= 'F'){
             return 10 + ch - 'A';
         }else{
             return ch - '0';
         }
     }
+
+    //Helper and Testing Functions
+    public static String convertBases(String input, int i_base, int t_base){
+        //Contract 
+        //  @param  string input, users string input value to convert
+        //  @param  int i_base, the initial base of the users value
+        //  @param  int t_base, target base to convert to
+        //  @return String convertBases, return value as string
+        //  @notes  Used this function to test my calculated results against
+
+        BigInteger converted = new BigInteger(input, i_base);
+        return converted.toString(t_base);
+    }
+
+    public static void printArray(String[] arr){
+        //Contract
+        //  @param  string array
+        //  @return void
+        //  @notes  helper function to test print single dim array values
+
+        System.out.println("User Parameters:");
+        for (String i : arr) {
+            System.out.println(i);
+        }
+    }
     
-    public static int convertBaseTen_Int(String num, int initial){
+    
+    public static int convertToBaseTen_Int(String num, int initial){
         int decVal = 0;
      
         for(int i = 0; i < num.length(); i++){
@@ -304,29 +316,4 @@ public class Hunt_Week1_BaseConversion{
         return decVal;
     }
 
-    public static String convertBaseTen_BigInt(String num, int initial){
-        //will try reversing string in function 
-        BigInteger result_BigInt = BigInteger.ZERO;
-        int result = 0;
-        for(int i = 0; i < num.length(); i++){
-            char numChar = num.charAt(i);
-             //System.out.println(" -> "+ numChar);
-            //decVal = decVal * initial + charToInt(numChar); 
-
-            int charToInt = charToInt(numChar); 
-
-            //System.out.println("result = " + result + " * " + initial + " + "+ charToInt);
-            result = (result * initial) + charToInt(numChar);  
-            
-            System.out.println("result_BigInt = " + result_BigInt + " * " + initial + " + " + charToInt);
-            result_BigInt = result_BigInt.multiply(BigInteger.valueOf(initial));
-
-            result_BigInt = result_BigInt.add(BigInteger.valueOf(charToInt));
-
-            //System.out.print(retVal);
-        }
-    
-        String x = result_BigInt.toString();
-        return x;
-    }
 }

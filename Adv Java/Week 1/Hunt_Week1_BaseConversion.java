@@ -32,8 +32,6 @@ import java.math.BigInteger;
 import java.lang.StringBuilder;
 import java.util.Scanner;
 
-import jdk.nashorn.internal.runtime.QuotedStringTokenizer;
-
 import java.util.InputMismatchException;
 
 public class Hunt_Week1_BaseConversion{
@@ -62,9 +60,13 @@ public class Hunt_Week1_BaseConversion{
 
             if(is_ValidBase){
                 // My custom function built using BigInt - Not useing the BigInt built in classes
-                String output1 = convertToBaseTen_BigInt(userStr, initial_Base, target_Base); 
+                String output1 = convertToBaseTen_BigInt(userStr, initial_Base,target_Base); 
                     System.out.println("\nBigInt - Initial base ->  " + initial_Base + ":   " + userStr);
                     System.out.println("BigInt - Target base  ->  " + target_Base + ":  " + output1 +"\n");
+
+                //  String output3 = convertFromBaseTen_BigInt(output1, target_Base); 
+                //     System.out.println("\nBigInt - Initial base ->  " + initial_Base + ":   " + userStr);
+                //     System.out.println("BigInt - Target base  ->  " + target_Base + ":  " + output3 +"\n");
 
                 // Testing function to confirm output    
                 String output2 = convertBases(userStr, initial_Base, target_Base);
@@ -75,7 +77,7 @@ public class Hunt_Week1_BaseConversion{
                 System.out.println("\tSorry, Please try again some other time!");
             }
         }catch(Exception ex){
-            System.out.println("Apparently, there has been some sort of wierd/random anolomy is this program????");
+            System.out.println("Apparently, there has been some sort of random anolomy is this program????");
             System.out.println("\tThe program will now exit, Sorry!");
             System.exit(1);
         }
@@ -270,9 +272,10 @@ public class Hunt_Week1_BaseConversion{
             result_BigInt = result_BigInt.add(BigInteger.valueOf(charToInt));
         }
         //Convert to new target base
-        String retVal = convertFromBaseTen_BigInt(result_BigInt,t_base);
+        String result = result_BigInt.toString();
+        String retVal = convertFromBaseTen_BigInt(result,t_base);
 
-        return retVal;
+        return retVal.toUpperCase();
     }
 
     public static int charToInt(char ch){
@@ -296,36 +299,45 @@ public class Hunt_Week1_BaseConversion{
         //  @notes  Used this function to test my calculated results against
 
         BigInteger converted = new BigInteger(input, i_base);
-        return converted.toString(t_base);
+        return converted.toString(t_base).toUpperCase();
     }
 
-    public static void convertFromBaseTen_BigInt(String input, int t_base){
+    public static String convertFromBaseTen_BigInt(String input, int t_base){
         //Contract
         //  @param  String input, user input value as base ten value
         //  @param  int t_base, target base value
         //  @return String, returns value desired base
         //  @reference  https://mathbits.com/MathBits/CompSci/Introduction/frombase10.htm
 
-        StringBuilder result = "";
+        StringBuilder result = new StringBuilder();
         BigInteger quotient = BigInteger.ZERO;
-        BigInteger remainder = BigInteger.ZERO;
-        BigInteger input_BigInt = BigInteger.valueOf(input);
+        BigInteger remainder_BigInt = BigInteger.ZERO;
+        BigInteger input_BigInt = new BigInteger(input);
+        String retval = "";
 
-        //TODO: Need to fix loop and check the function performance
-       for(input_BigInt;){
+       while(input_BigInt.compareTo(BigInteger.ZERO) > 0){
 
-            System.out.printf("input: %s ", input);
-            quotient = input_BigInt.divide(BigInteger.valueOf(t_base));
-            remainder  = quotient.mod( BigInteger.valueOf(t_base));
+            //System.out.printf("input: %s ", input_BigInt.toString());
+            quotient    = input_BigInt.divide(BigInteger.valueOf(t_base));
+            remainder_BigInt   = input_BigInt.mod( BigInteger.valueOf(t_base));
 
-            System.out.printf("quotient: %s remainder %s", quotient, remainder);
+            //System.out.printf("q: %s r\t %s ", quotient, remainder_BigInt);
 
             input_BigInt = quotient;
-            result.add(input_BigInt.toString());
+            int i = Integer.parseInt(remainder_BigInt.toString());
 
+            //Convert numbers > 9 to 'A'-'Z'
+            if(i >= 0 && i <= 9){
+                result.append((char)(i +'0'));
+                //System.out.println((char)(i));
+            }else{
+                 result.append((char)((i - 10) + 'A'));
+                 //System.out.println((char)((i - 10) + 'A'));
+            }
+            retval = reverseString(result.toString());
         }
-        System.out.println(result.toString());
-        //return result.toString();
+        // System.out.println(result.toString());
+        return retval;
     }
 
     public static void printArray(String[] arr){
@@ -339,6 +351,21 @@ public class Hunt_Week1_BaseConversion{
             System.out.println(i);
         }
     }
+
+    public static String reverseString(String input){
+        char[] in = input.toCharArray();
+        int begin=0;
+        int end=in.length-1;
+        char temp;
+        while(end>begin){
+            temp = in[begin];
+            in[begin]=in[end];
+            in[end] = temp;
+            end--;
+            begin++;
+        }
+        return new String(in);
+}
     
     public static int convertToBaseTen_Int(String num, int initial){
         int decVal = 0;

@@ -6,27 +6,6 @@
  * Due: 08/23/17
 */
 
-/* Week 1 - Outline
-    - Check inputs 
-        - cmd line inputs?
-        - User enter input?
-
-    - Intro message
-        - if cmd
-            - get inputs
-            - error wrong num inputs
-
-        - if user input (no cmd)
-            - get inputs
-                - prompt for string to conv, base, output
-    
-    - Validate inputs
-        - Check if string is valid against initial base 
-            - If valid 
-                - Convert to target base (use BigInt)
-                - Return value as String from BigInt 
-            - Else return error message
-*/
 
 import java.math.BigInteger;
 import java.lang.StringBuilder;
@@ -59,15 +38,16 @@ public class Hunt_Week1_BaseConversion{
             boolean is_ValidBase = isValidBase(userStr, initial_Base);
 
             if(is_ValidBase){
+                String output1 = convertBase_BigInt(userStr, initial_Base, target_Base); 
+                    System.out.println("\n~Initial base -> " + initial_Base + ":   " + userStr);
+                    System.out.println("~Target base  ->  " + target_Base + ":   " + output1 +"\n");
 
                 // Convert Bases
                 String output = convertBases(userStr, initial_Base, target_Base);
                     System.out.println("Initial base ->\t" + initial_Base + ":\t " + userStr);
-                    System.out.println("Target base  ->\t" + target_Base + ":\t  " + output +"\n");
+                    System.out.println("Target base  ->\t" + target_Base + ":\t " + output +"\n");
 
-                String output1 = convertBase_BigInt(userStr, initial_Base,target_Base); 
-                    System.out.println("\n~~Initial base ->  " + initial_Base + ":   " + userStr);
-                    System.out.println("~~Target base  ->  " + target_Base + ":  " + output1 +"\n");
+
 
             }else{
                 System.out.println("\nThe user input string '" + userStr + "' is not of base type " + initial_Base);
@@ -319,25 +299,25 @@ public class Hunt_Week1_BaseConversion{
             //System.out.printf("input: %s ", input_BigInt.toString());
             quotient            = input_BigInt.divide(BigInteger.valueOf(t_base));
             remainder_BigInt    = input_BigInt.mod(BigInteger.valueOf(t_base));
+        
             input_BigInt = quotient;
-            System.out.printf("q: %s r\t %s ", quotient, remainder_BigInt);
-
-            input_BigInt = quotient;
+            //System.out.printf("q: %s r\t %s ", quotient, remainder_BigInt);
 
             //????? Bugis in here somewhere
-            int i = Integer.parseInt(remainder_BigInt.toString());
+            // int i = Integer.parseInt(remainder_BigInt.toString());
             
-            //Convert numbers > 9 to 'A'-'Z'
-            if(i >= 0 && i <= 9){
-                result.append((char)(i + '0'));
-                System.out.println((char)(i));
-            }else{
-                 result.append((char)((i - 10) + 'A'));
-                 System.out.println((char)((i + 10) + 'A'));
-            }
+            // //Convert numbers > 9 to 'A'-'Z'
+            // if(i >= 0 && i <= 9){
+            //     result.append((char)(i + '0'));
+            //     //System.out.println((char)(i));
+            // }else{
+            //      result.append((char)((i - 10) + 'A'));
+            //      //System.out.println((char)((i + 10) + 'A'));
+            // }
+              //????? Bugis in here somewhere
+            result.append(remainder_BigInt.toString(t_base));//???
+
             retval = reverseString(result.toString());
-            //????? Bugis in here somewhere
-            
         }
         // System.out.println(result.toString());
         return retval;

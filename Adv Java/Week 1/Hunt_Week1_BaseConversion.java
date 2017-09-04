@@ -59,19 +59,16 @@ public class Hunt_Week1_BaseConversion{
             boolean is_ValidBase = isValidBase(userStr, initial_Base);
 
             if(is_ValidBase){
-                // My custom function built using BigInt - Not useing the BigInt built in classes
-                String output1 = convertToBaseTen_BigInt(userStr, initial_Base,target_Base); 
-                    System.out.println("\nBigInt - Initial base ->  " + initial_Base + ":   " + userStr);
-                    System.out.println("BigInt - Target base  ->  " + target_Base + ":  " + output1 +"\n");
 
-                //  String output3 = convertFromBaseTen_BigInt(output1, target_Base); 
-                //     System.out.println("\nBigInt - Initial base ->  " + initial_Base + ":   " + userStr);
-                //     System.out.println("BigInt - Target base  ->  " + target_Base + ":  " + output3 +"\n");
+                // Convert Bases
+                String output = convertBases(userStr, initial_Base, target_Base);
+                    System.out.println("Initial base ->\t" + initial_Base + ":\t " + userStr);
+                    System.out.println("Target base  ->\t" + target_Base + ":\t  " + output +"\n");
 
-                // Testing function to confirm output    
-                String output2 = convertBases(userStr, initial_Base, target_Base);
-                    System.out.println("Built-In - Initial base ->\t" + initial_Base + ":\t " + userStr);
-                    System.out.println("Built-In - Target base  ->\t" + target_Base + ":\t " + output2 +"\n");
+                String output1 = convertBase_BigInt(userStr, initial_Base,target_Base); 
+                    System.out.println("\n~~Initial base ->  " + initial_Base + ":   " + userStr);
+                    System.out.println("~~Target base  ->  " + target_Base + ":  " + output1 +"\n");
+
             }else{
                 System.out.println("\nThe user input string '" + userStr + "' is not of base type " + initial_Base);
                 System.out.println("\tSorry, Please try again some other time!");
@@ -105,7 +102,7 @@ public class Hunt_Week1_BaseConversion{
         //If number of cmd line input values are incorrect
         String invaid_cmd_message = "";
         if((args.length > 0 && args.length > 3)){
-            invaid_cmd_message = "\nInvalid number of command line inputs, Please, manually enter input values:\n";
+            invaid_cmd_message = "\n\nCmd line args error: Invalid number of command line inputs. Please, manually enter input values:\n";
             System.out.println(invaid_cmd_message);
         }
         return isCmd;
@@ -255,7 +252,7 @@ public class Hunt_Week1_BaseConversion{
         return isValid;
     }
 
-    public static String convertToBaseTen_BigInt(String input, int i_base, int t_base){
+    public static String convertBase_BigInt(String input, int i_base, int t_base){
         //Contract
         //  @param  String input, user input value
         //  @param  int i_base, initial base value
@@ -263,6 +260,7 @@ public class Hunt_Week1_BaseConversion{
 
         BigInteger result_BigInt = BigInteger.ZERO;
 
+        //Convert to base ten
         for(int i = 0; i < input.length(); i++){
             char numChar = input.charAt(i);
             int charToInt = charToInt(numChar);
@@ -271,7 +269,8 @@ public class Hunt_Week1_BaseConversion{
             result_BigInt = result_BigInt.multiply(BigInteger.valueOf(i_base));
             result_BigInt = result_BigInt.add(BigInteger.valueOf(charToInt));
         }
-        //Convert to new target base
+
+        //Convert from base ten to target base
         String result = result_BigInt.toString();
         String retVal = convertFromBaseTen_BigInt(result,t_base);
 
@@ -318,23 +317,27 @@ public class Hunt_Week1_BaseConversion{
        while(input_BigInt.compareTo(BigInteger.ZERO) > 0){
 
             //System.out.printf("input: %s ", input_BigInt.toString());
-            quotient    = input_BigInt.divide(BigInteger.valueOf(t_base));
-            remainder_BigInt   = input_BigInt.mod( BigInteger.valueOf(t_base));
-
-            //System.out.printf("q: %s r\t %s ", quotient, remainder_BigInt);
+            quotient            = input_BigInt.divide(BigInteger.valueOf(t_base));
+            remainder_BigInt    = input_BigInt.mod(BigInteger.valueOf(t_base));
+            input_BigInt = quotient;
+            System.out.printf("q: %s r\t %s ", quotient, remainder_BigInt);
 
             input_BigInt = quotient;
-            int i = Integer.parseInt(remainder_BigInt.toString());
 
+            //????? Bugis in here somewhere
+            int i = Integer.parseInt(remainder_BigInt.toString());
+            
             //Convert numbers > 9 to 'A'-'Z'
             if(i >= 0 && i <= 9){
-                result.append((char)(i +'0'));
-                //System.out.println((char)(i));
+                result.append((char)(i + '0'));
+                System.out.println((char)(i));
             }else{
                  result.append((char)((i - 10) + 'A'));
-                 //System.out.println((char)((i - 10) + 'A'));
+                 System.out.println((char)((i + 10) + 'A'));
             }
             retval = reverseString(result.toString());
+            //????? Bugis in here somewhere
+            
         }
         // System.out.println(result.toString());
         return retval;

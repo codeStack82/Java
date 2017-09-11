@@ -306,7 +306,6 @@ public class Hunt_Week1_BaseConversion{
         System.out.print(b1.toString());
         return decVal;
     }
-
     public static int charToInt(char ch){
         if(ch >= 'A' && ch <= 'F'){
             return 10 + ch - 'A';

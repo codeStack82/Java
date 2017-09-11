@@ -55,7 +55,7 @@ public class RecursionDemo{
         //  @Tested     8/24/17
 
         boolean isCmd = false;
-        isCmd = (args.length > 0 && args.length == 3) ? true : false;
+        isCmd = (args.length > 0 && args.length == 1) ? true : false;
         return isCmd;
     }
 
@@ -86,7 +86,7 @@ public class RecursionDemo{
 
         //Create input scanner
         Scanner input = new Scanner(System.in);
-        String [] params = new String[3];
+        String [] params = new String[1];
 
         //Get string param
         System.out.print("\tEnter the initial base (Integer):  ");

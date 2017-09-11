@@ -117,21 +117,6 @@ public class Functions_W2 {
         return result;
     }
 
-    public static void mainMethod(int n){
-        //Start timer
-        long startTime = System.nanoTime();  
-
-        //Display output    -Change out below function as needed
-        System.out.println( n + "! = " + fib_Long_Memloop(n));
-
-        //Calculate elapsed time
-        long estimatedTime = System.nanoTime() - startTime;        
-        double seconds = (double)estimatedTime / 1000000000;
-
-        //Display ouputs
-        System.out.println("The elapsed time is " + (seconds)  + " seconds.\n");
-    }
-  
     public static void main(String[] args) {
             int  n = 0;
              if(args.length>1){

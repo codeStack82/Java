@@ -2,7 +2,7 @@
 // Advanced java
 // OCCC Spring 2017
 // Sort and Merge Homework - Part 1
-// Due: 2/12/17
+// Due: 9/10/17
 
 import java.io.BufferedWriter;
 import java.util.Scanner;
@@ -16,8 +16,8 @@ public class SortAndMerge {
     public static int count = 0;
     public static void main(String[] args) {
         //Desktop test files
-            // /Users/Ty/Desktop/array1.txt
-            // /Users/Ty/Desktop/array2.txt
+            // /Users/Ty/Desktop/Java Temp code/Adv Java/Week 2/array1.txt
+            // /Users/Ty/Desktop/Java Temp code/Adv Java/Week 2/array2.txt
             
         //Welcome message and directions
         System.out.println("Welcome to the Sort and Merge console Application!");
@@ -42,7 +42,7 @@ public class SortAndMerge {
             //Create arrays
             int firstArray [] = new int [size1];
             int secondArray [] = new int [size2];
-            int[] thirdArray = new int[size3];
+            int thirdArray [] = new int[size3];
             
             //Read in contents from array 1-------------------------------------
             for(int i = 0; i < firstArray.length; ++i){
@@ -193,6 +193,7 @@ public class SortAndMerge {
 
             //Create scanner to get filename
             Scanner s = new Scanner(System.in);
+            //Scanner f = new Scanner(new File(fileName))
 
             //Display prompt
             System.out.print(prompt);
@@ -241,7 +242,7 @@ public class SortAndMerge {
         while(arrLength1 < arr1.length && arrLength2 < arr2.length){
             
             //Check each value is each half array and 
-            //combine into the temp[]
+            //Combine into the temp[]
             if(arr1[arrLength1] < arr2[arrLength2]){
                 temp[arrlength++] = arr1[arrLength1++];
             }else{

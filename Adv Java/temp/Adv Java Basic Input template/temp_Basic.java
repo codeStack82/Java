@@ -3,11 +3,7 @@
  * Advanced Java
  * OCCC Fall 2017
  * Class Example
- * Due: xx/xx/xx
-*/
-
-/* Week x - Outline
-   temp code tested - 8/26/17
+ * Due: 09/17/17
 */
 
 import java.math.BigInteger;

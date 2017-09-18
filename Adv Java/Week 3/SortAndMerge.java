@@ -16,8 +16,8 @@ public class SortAndMerge {
     public static int count = 0;
     public static void main(String[] args) {
         //Desktop test files
-            // /Users/Ty/Desktop/Java Temp code/Adv Java/Week 2/array1.txt
-            // /Users/Ty/Desktop/Java Temp code/Adv Java/Week 2/array2.txt
+            // /Users/Ty/Desktop/Java Temp code/Adv Java/Week 3/array1.txt
+            // /Users/Ty/Desktop/Java Temp code/Adv Java/Week 3/array2.txt
             
         //Welcome message and directions
         System.out.println("Welcome to the Sort and Merge console Application!");
@@ -146,7 +146,7 @@ public class SortAndMerge {
       }
     
     //Write to new file
-    public static void writer (String fileName, int[]x) throws IOException{
+    public static void writer (String fileName, int[] x) throws IOException{
         //Save file to user desktop
         System.getProperty("user.home");
         String userHomeFolder = System.getProperty("user.home");

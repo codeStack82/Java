@@ -48,7 +48,7 @@ public class Hunt_W3_MergeSort{
             int size1 = f1.nextInt();
             int size2 = f2.nextInt();
             int size3 = size1 + size2;
-            System.out.printf("size1 %d - size2 %d - size3 %d ", size1, size2, size3);
+            //System.out.printf("size1 %d - size2 %d - size3 %d ", size1, size2, size3);
 
             //Create arrays for files
             int firstArray [] = new int [size1];
@@ -108,7 +108,8 @@ public class Hunt_W3_MergeSort{
     }
 
     public static boolean isCmdLine(String [] args)
-    {//Contract 
+    {
+        //Contract 
         //  @notes:     Check to see if user started progam with cmd inputs
         //  @param      args[], cmd line input array 
         //  @param      isCmd, check if input > 0 and == 3
@@ -219,7 +220,9 @@ public class Hunt_W3_MergeSort{
         
         BufferedWriter outputWriter;
         outputWriter = new BufferedWriter(new FileWriter(textFile));
-      
+        String s = Integer.toString(x.length);
+        outputWriter.write(s);
+
         for (int i = 0; i < x.length; i++) {
             if ( i%10 == 0 ){
                 outputWriter.newLine();
@@ -292,27 +295,6 @@ public class Hunt_W3_MergeSort{
         }
     }
 
-    public static void createLargeTestFile()
-    {//Contract 
-        //  @notes:     Cretes a large test file o's' ints
-        //  @return     void
-
-        //Create large test file
-        int[] largeTestFile = new int[369667];
-        Random rand = new Random();
-        for(int i = 0; i < largeTestFile.length; i++){
-            int  n = rand.nextInt(1000000) + 1;
-            largeTestFile[i] = n;
-        }
-      
-         //Wirte test  file
-        try{
-            writer ("largeTestFile.txt", largeTestFile);
-            System.out.println("\nExported large test file");
-        }catch(IOException ex){
-            System.out.println();
-            System.out.println("\tError: " + ex.toString());
-        }
-    }
+   
 }
 

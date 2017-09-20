@@ -1,0 +1,50 @@
+primitaves
+    identity - What it is and where it is
+    state - is the 1 and 0 where it is
+
+Objects
+    identity - What it is and where it is
+    state - is the 1 and 0 where it is
+    behavior  - what it does....
+
+    What is an object?
+        an instance of a class
+            class -> blueprint of and object
+                object -> if it has state, identity, behavior
+
+new -> keyword
+    allocate at run time
+
+class   
+    name
+    state
+
+Access Specifiers
+    public + - everyone see's it
+    private - - only Class see's it
+    protected # - only children of super can see it
+
+static method
+    - don't need to be invoked by an instance of a class 
+        - it is essentially a simple function Math objects are static
+non-static methods
+    - can only be invoked a class instance
+
+inheratance
+
+stack
+    smaller storage, used for primitaves
+heap
+    things have to be dyncamically allocated, such as objects
+
+What are the 2 distinctions between static and dynamic allocation?
+        static are built at compiled time
+        dynamic are built at run time
+
+dynamic binding - 
+static binding - 
+
+UML - universal modeling language 
+    - assists with modeling class based programs
+
+

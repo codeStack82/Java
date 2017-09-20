@@ -10,7 +10,7 @@ import java.math.BigInteger;
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
-public class temp_Basic{
+public class w5_class_code{
     public static void main(String [] args){
         String userStr = "";
         int initial_Base = 0;
@@ -31,9 +31,8 @@ public class temp_Basic{
          //Contract 
         //  Print intro message
         //  @return -> void, no output  
-        System.out.println("\n~~~~~~~~~~~~ Basic XXX Program - Advanced Java Week X ~~~~~~~~~~~~\n");
+        System.out.println("\n~~~~~~~~~~~~ Week 5 Class Code - Advanced Java Week X ~~~~~~~~~~~~\n");
     }
-
 
     public static boolean isCmdLine(String [] args){
         //Contract 
@@ -62,17 +61,17 @@ public class temp_Basic{
         if(is_cmdLine){
             return args;
         }else{
-            return get_inputParams();
+            return get_UserInputParams();
         }
     }
 
-    public static String [] get_inputParams(){
+    public static String [] get_UserInputParams(){
         //Contract 
         //  @notes:     If no cmd input then get user input
         //  @return     String array of user input
         //  @Tested     8/25/17
 
-
+        // You will change the below values to whatever you need for program spec's'
         //Create input scanner
         Scanner input = new Scanner(System.in);
         String [] params = new String[3];

@@ -17,7 +17,7 @@ import java.io.FileWriter;
 import java.util.Random;
 import java.io.BufferedWriter;
 
-public class Hunt_W3_MergeSort{
+public class Hunt_W3_SortAndMerge{
     public static void main(String [] args){
         //Note: Command line accepts 3 file names 
             // Ex: array1.txt array2.txt results.txt

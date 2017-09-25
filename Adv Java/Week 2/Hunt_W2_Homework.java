@@ -10,7 +10,7 @@ import java.math.BigInteger;
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
-public class Hunt_W2_Homework{
+public class Hunt_W2_Fibonacci{
     public static void main(String [] args){
         String input = "";
 

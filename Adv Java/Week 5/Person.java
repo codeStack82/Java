@@ -1,5 +1,4 @@
-import java.util.Scanner;
-import Date;
+
 //Week 5 implement all except OCCCDate
 
 public class Person{
@@ -12,12 +11,12 @@ public class Person{
         this.firstName  = new String(firstName);
         this.lastName  = new String(lastName);
     }
-
-    public Person(String firstName, String lastName, Date OCCCDate){
-        this.firstName  = new String(firstName);
-        this.lastName  = new String(lastName);
-        //this.OCCCDate = new OCCCDate.getDefault();  //need to fix
-    }
+    //, Date OCCCDate
+    // public Person(String firstName, String lastName, ){
+    //     this.firstName  = new String(firstName);
+    //     this.lastName  = new String(lastName);
+    //     //this.OCCCDate = new OCCCDate.getDefault();  //need to fix
+    // }
     public Person(Person P){
 
     }  //Copy constructor
@@ -41,18 +40,21 @@ public class Person{
     }
 
     //Class Methods
-    //  String toString(){
-    //      System.out.printf("%s %s", firstName, lastName);
-    // }
-
-    boolean equals(){
-        // if(firstName == other firstName && lastName == other lastName){
-        //     return true;
-        // }
+  
+  @Override 
+  public String toString(){
+         return "First name: " + firstName + " Last name: "  +lastName;
     }
 
+    // @Override
+    // boolean equals(){
+    //     // if(firstName == other firstName && lastName == other lastName){
+    //     //     return true;
+    //     // }
+    // }
+
     void eat(){
-        System.out.println("Person is eating");
+        System.out.println("A " + getClass().getName() + " is eating");
     }
 
     void sleep(){

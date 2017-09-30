@@ -17,9 +17,7 @@ public class Person{
     //     this.lastName  = new String(lastName);
     //     //this.OCCCDate = new OCCCDate.getDefault();  //need to fix
     // }
-    public Person(Person P){
-
-    }  //Copy constructor
+    public Person(Person P){}  //Copy constructor
 
     //Getters
     public String getFirstName(){
@@ -41,8 +39,7 @@ public class Person{
 
     //Class Methods
   
-  @Override 
-  public String toString(){
+  @Override public String toString(){
          return "First name: " + firstName + " Last name: "  +lastName;
     }
 

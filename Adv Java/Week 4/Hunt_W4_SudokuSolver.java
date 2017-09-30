@@ -38,10 +38,9 @@ public class Hunt_W4_SudokuSolver {
             Scanner sc = new Scanner(new File(fileName));
             for (int row = 0; row < 9; ++row) {
 
-                //Test file has '*' 
                 for (int col = 0; col < 9; ++col) {
                     String value = sc.next();
-                    if (value.equals("*"))
+                    if (!Character.isLetterOrDigit(value.charAt(0)))
                         puzzle[row][col] = 0;
                     else
                         puzzle[row][col] = value.charAt(0) - '0';
@@ -50,6 +49,7 @@ public class Hunt_W4_SudokuSolver {
 
             // File not Found Exception
         } catch (FileNotFoundException e) {
+            System.out.print("\tAn error has occured or the input data is invalid");
             System.out.println(e.toString());
             System.exit(0);
         }
@@ -60,6 +60,7 @@ public class Hunt_W4_SudokuSolver {
         printPuzzle(puzzle);
         System.out.println();
 
+    try{
         //Attempt to solve puzzle
         int solved[][] = solvePuzzle(0, 0, puzzle);
 
@@ -74,7 +75,10 @@ public class Hunt_W4_SudokuSolver {
             System.out.print("This puzzle is having issues.....");
             System.out.println("and/or is unsolvable! \n\tSorry, Try again some other time!");
         }
-
+    }catch(Exception ex){
+        System.out.print("\tAn error has occured or the input data is invalid");
+            
+        }
     }
 
     public static int [][] solvePuzzle(int x, int y, int[][] puzzle)

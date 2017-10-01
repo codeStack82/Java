@@ -11,12 +11,14 @@ public class Person{
         this.firstName  = new String(firstName);
         this.lastName  = new String(lastName);
     }
+
     //, Date OCCCDate
     // public Person(String firstName, String lastName, ){
     //     this.firstName  = new String(firstName);
     //     this.lastName  = new String(lastName);
     //     //this.OCCCDate = new OCCCDate.getDefault();  //need to fix
     // }
+
     public Person(Person P){}  //Copy constructor
 
     //Getters
@@ -29,41 +31,40 @@ public class Person{
     }
 
     //Setters
-    private void setFirstName(String fn){
-         firstName = fn;
+    private void setFirstName(String firstName){
+         this.firstName = firstName;
     }
 
-    void setLastName(String ln){
-         lastName = ln;
+    void setLastName(String lastName){
+         this.lastName = lastName;
     }
 
     //Class Methods
-  
-  @Override public String toString(){
-         return "First name: " + firstName + " Last name: "  +lastName;
+    @Override public String toString(){
+         return "First name: " + firstName + " Last name: "  + lastName;
     }
 
-    // @Override
-    // boolean equals(){
-    //     // if(firstName == other firstName && lastName == other lastName){
-    //     //     return true;
-    //     // }
-    // }
+//    @override public boolean equals(Person p){
+
+//         Class testClass = p.getClass();
+//         boolean isPerson = testClass.isInstance(Person)? true : false;
+//         return isPerson;
+//     }
 
     void eat(){
         System.out.println("A " + getClass().getName() + " is eating");
     }
 
     void sleep(){
-        System.out.println("Person is sleeping");
+        System.out.println("A " + getClass().getName() + " is sleeping");
     }
 
     void play(){
-        System.out.println("Person is playing");
+        System.out.println("A " + getClass().getName() + " is playing");
     }
+    
 
     void run(){
-        System.out.println("Person is running");
+        System.out.println("A " + getClass().getName() + " is running");
     }
-
 }

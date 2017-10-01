@@ -44,7 +44,7 @@ public class Person{
          return "First name: " + firstName + " Last name: "  + lastName;
     }
 
-//    @override public boolean equals(Person p){
+//   public boolean equals(Person p){
 
 //         Class testClass = p.getClass();
 //         boolean isPerson = testClass.isInstance(Person)? true : false;

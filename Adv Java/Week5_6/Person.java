@@ -1,10 +1,19 @@
+/*
+ * Tyler Hunt
+ * Advanced Java
+ * OCCC Fall 2017
+ * Week 6
+ * Due: 10/1/2107
+ * Person Class
+*/
 
-//Week 5 implement all except OCCCDate
+
+import java.util.Date;
 
 public class Person{
     private String firstName;
     private String lastName;
-    //private Date OCCCDate;
+    private OCCCDate dob;
         
     //Constructors
     public Person(String firstName, String lastName){
@@ -12,12 +21,12 @@ public class Person{
         this.lastName  = new String(lastName);
     }
 
-    //, Date OCCCDate
-    // public Person(String firstName, String lastName, ){
-    //     this.firstName  = new String(firstName);
-    //     this.lastName  = new String(lastName);
-    //     //this.OCCCDate = new OCCCDate.getDefault();  //need to fix
-    // }
+    // Date OCCCDate
+    public Person(String firstName, String lastName, OCCCDate dob){
+        this.firstName  = new String(firstName);
+        this.lastName   = new String(lastName);
+        this.dob        = dob;
+    }
 
     public Person(Person P){}  //Copy constructor
 
@@ -30,41 +39,52 @@ public class Person{
         return new String(lastName);
     }
 
+    public OCCCDate getDOB(){
+        return dob;
+        //might have to check null?
+    }
+
     //Setters
-    private void setFirstName(String firstName){
+    public void setFirstName(String firstName){
          this.firstName = firstName;
     }
 
-    void setLastName(String lastName){
+    public void setLastName(String lastName){
          this.lastName = lastName;
     }
 
-    //Class Methods
-    @Override public String toString(){
-         return "First name: " + firstName + " Last name: "  + lastName;
+    public void eat(){
+        System.out.println("\tA " + getClass().getName() + " named "+ firstName+  " is eating");
     }
 
-//   public boolean equals(Person p){
-
-//         Class testClass = p.getClass();
-//         boolean isPerson = testClass.isInstance(Person)? true : false;
-//         return isPerson;
-//     }
-
-    void eat(){
-        System.out.println("A " + getClass().getName() + " is eating");
+    public void sleep(){
+        System.out.println("\tA " + getClass().getName() + " named "+ firstName+ " is sleeping");
     }
 
-    void sleep(){
-        System.out.println("A " + getClass().getName() + " is sleeping");
-    }
-
-    void play(){
-        System.out.println("A " + getClass().getName() + " is playing");
+    public void play(){
+        System.out.println("\tA " + getClass().getName() + " named "+ firstName+ " is playing");
     }
     
+    public void run(){
+        System.out.println("\tA " + getClass().getName() + " named "+ firstName+ " is running");
+    }
 
-    void run(){
-        System.out.println("A " + getClass().getName() + " is running");
+    @Override 
+    public String toString(){
+        String result = "";
+        if(dob == null){
+            result = "First name: " + firstName + ", Last name: "  + lastName;
+        }else{
+            result = "First name: " + firstName + ", Last name: "  + lastName + " DOB: " + dob.toString();
+        }
+        return result;
+    }
+
+    public boolean equals(Person p){
+        boolean isEqual = false;
+        if(p == null) isEqual = false;
+        if(p == this) isEqual = true;
+        if(!(p instanceof Person)) isEqual = false;   
+        return isEqual;     
     }
 }

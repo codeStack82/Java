@@ -1,34 +1,45 @@
+/*
+ * Tyler Hunt
+ * Advanced Java
+ * OCCC Fall 2017
+ * Week 6
+ * Due: 10/1/2107
+ * RegisteredPerson Class
+*/
+
 public class RegisteredPerson extends Person{
     private String govID;
 
     //Constructors
-    RegisteredPerson(String firstName, String LastName, String govID){
+    RegisteredPerson(String firstName, String lastName, String govID){
         super(firstName, lastName);
         this.govID  = new String(govID);
     }
     
-    // RegisteredPerson(Person p, String govID){
-    //    this.
-    // }
+    RegisteredPerson(Person p, String govID){
+        super(p.getFirstName(), p.getLastName());
+        this.govID = govID;
+    }
 
-    RegisteredPerson(RegisteredPerson rp){}
+    //RegisteredPerson(RegisteredPerson rp){}
     
     //Getters
     String getGovernmentID(){
         return govID;
     }
 
-    //defaults
-    // @Override public boolean equals(RegisteredPerson rp){
-    //     return true;
-    // }
+    public boolean equals(RegisteredPerson p){
+        boolean isEqual = false;
+        if(p == null) isEqual = false;
+        if(p == this) isEqual = true;
 
-    // @Override public boolean equals(Person p){
-    //     return true;
-    // }
-
-    @Override public String toString(){
-        return super.toString() + " [" + govID + "]";
+        if(!(p instanceof RegisteredPerson)) isEqual = false;   
+        
+        return isEqual;     
     }
 
+    @Override 
+    public String toString(){
+        return super.toString() + ", GovId: [" + govID + "]";
+    }
 }

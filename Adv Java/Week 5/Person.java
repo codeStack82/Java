@@ -11,6 +11,7 @@
 import java.util.Date;
 
 public class Person{
+
     private String firstName;
     private String lastName;
     private OCCCDate dob;
@@ -18,7 +19,7 @@ public class Person{
     //Constructors
     public Person(String firstName, String lastName){
         this.firstName  = new String(firstName);
-        this.lastName  = new String(lastName);
+        this.lastName   = new String(lastName);
     }
 
     // Date OCCCDate
@@ -42,6 +43,15 @@ public class Person{
     public OCCCDate getDOB(){
         return dob;
         //might have to check null?
+    }
+
+    public int getAge(){
+        int age = 0;
+        if(this.dob != null){
+            dob.getDifferenceInYears();
+        }
+
+     return age;   
     }
 
     //Setters
@@ -73,9 +83,9 @@ public class Person{
     public String toString(){
         String result = "";
         if(dob == null){
-            result = "First name: " + firstName + ", Last name: "  + lastName;
+            result = lastName  + ", "  + firstName;
         }else{
-            result = "First name: " + firstName + ", Last name: "  + lastName + " DOB: " + dob.toString();
+            result = lastName + ", "  + firstName + " (" + dob.toString() + ")";
         }
         return result;
     }

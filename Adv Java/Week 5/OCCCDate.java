@@ -40,7 +40,7 @@ public class OCCCDate{
         if(year > 1899){
             this.year = year;
         }else{
-            this.year = 1900;
+            this.year = 1900; //default 
         }
     }
 
@@ -53,25 +53,25 @@ public class OCCCDate{
     OCCCDate(OCCCDate d){};
 
     //Getters
-    int getDayOfMonth(){
+    public int getDayOfMonth(){
         return this.dayOfMonth;
     }
 
-    int getMonth(){
+    public int getMonth(){
         return this.monthOfYear;
     }
 
-    int getYear(){
+    public int getYear(){
         return this.year;
     }
 
-    String getDayOfWeek(){
+    public String getDayOfWeek(){
         int d = getDayOfMonth();
         int m = getMonth();
         int y = getYear();
 
         GregorianCalendar gc = new GregorianCalendar(y, m, d);
-        int dayOfWeek =  gc.get(gc.DAY_OF_WEEK);
+        int dayOfWeek        =  gc.get(gc.DAY_OF_WEEK);
         String day;
         switch (dayOfWeek) {
             case 1: day = "SUNDAY";
@@ -94,7 +94,7 @@ public class OCCCDate{
         return day;
     }
 
-    String getNameOfMonth(){
+    public String getNameOfMonth(){
         int d = getDayOfMonth();
         int m = getMonth();
         int y = getYear();
@@ -134,12 +134,31 @@ public class OCCCDate{
     }
 
     //Setters
-    void setDateFormat(boolean dateFormat){
+    public void setDateFormat(boolean dateFormat){
         this.dateFormat = dateFormat;
     }
 
-    void setStyleFormat(boolean dateStyle){
+    public void setStyleFormat(boolean dateStyle){
         this.dateStyle = dateStyle;
+
+    }
+
+    public int getDifferenceInYears(){
+        GregorianCalendar today = new GregorianCalendar();
+        int nowYear = today.get(GregorianCalendar.YEAR);
+        int dobYear = this.year;
+        int age = nowYear - dobYear > 0? nowYear - dobYear: 0;
+
+        return age;
+    }
+
+    public int getDifferenceInYears(OCCCDate d){
+        GregorianCalendar today = new GregorianCalendar();
+        int nowYear = today.get(GregorianCalendar.YEAR);
+        int dobYear = d.getYear();
+        int age = nowYear - dobYear > 0? nowYear - dobYear: 0;
+
+        return age;
     }
 
     public boolean equals(OCCCDate p){
@@ -151,7 +170,7 @@ public class OCCCDate{
         
         return isEqual;     
     }
-    //Stub 
+ 
     @Override 
     public String toString(){
 

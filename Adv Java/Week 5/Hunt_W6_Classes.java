@@ -13,7 +13,6 @@ import sun.net.RegisteredDomain;
 public class Hunt_W6_Classes{
     public static void main(String [] aarrgs){
         System.out.println("\n~~~~~~~~~~~~ Class Builder Program - Advanced Java Week 6 ~~~~~~~~~~~~\n");
-        System.out.println("\n//Examples Section~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ");
         
         System.out.println("\n//Person 1 Info");
         Person p1 = new Person("Donald", "Trump");
@@ -64,7 +63,7 @@ public class Hunt_W6_Classes{
             System.out.println();
             
         System.out.println("//Registered Person 1 Info");    
-        RegisteredPerson rP1 = new RegisteredPerson("Tyler", "Hunt", "778547");
+        RegisteredPerson rP1 = new RegisteredPerson("Tyler", "Hunt", new OCCCDate(3,7,2012), "778547");
             //Names
             System.out.println("Print toString: " + rP1.toString());
             System.out.println("\tPrint first: " + rP1.getFirstName());
@@ -73,14 +72,14 @@ public class Hunt_W6_Classes{
 
             //Actions
             System.out.println("//Registered Person 1 Actions");  
-            rP1.eat();
-            rP1.sleep();
-            rP1.play();
-            rP1.run();
+                rP1.eat();
+                rP1.sleep();
+                rP1.play();
+                rP1.run();
             System.out.println();
 
         System.out.println("//Registered Person 2 Info");  
-        RegisteredPerson rP2 = new RegisteredPerson("Thomas", "O\'Connell", "778549");
+        RegisteredPerson rP2 = new RegisteredPerson("Thomas", "O\'Connell", new OCCCDate(3,5,2012), "778549");
             //Names
             System.out.println(rP2.toString());
             System.out.println("\tPrint first: " + rP2.getFirstName());
@@ -123,7 +122,7 @@ public class Hunt_W6_Classes{
             System.out.println("\tCompare person 2 and Registered person 3: "+ rP1.equals(rP3));
             System.out.println();
 
-            System.out.println("//OCCCDate comparrisons");
+            System.out.println("//OCCCDate Formatting/Style/Comparrisons");
             OCCCDate d1 = new OCCCDate(3,7,2011);
             OCCCDate d2 = new OCCCDate(3,5,2011);
             //Dates
@@ -142,7 +141,6 @@ public class Hunt_W6_Classes{
             System.out.println("\tCompare date 2 and date: 2 "+ d2.equals(d2));
             System.out.println();
 
-            System.out.println("/Testing Section~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ");
            try{
                 Scanner fname = new Scanner(System.in);
                 System.out.print("\nPlease Enter a first name: ");
@@ -170,10 +168,11 @@ public class Hunt_W6_Classes{
 
                 Person p4 = new Person(first, last, yourDOB);
                 System.out.println("\n"+first + " " + last + " your birthday is on " + yourDOB.toString() + " !!");
+                System.out.println("\n"+first + " " + last + " your age is " + yourDOB.getDifferenceInYears()+ " !!");
 
                 System.out.println("\nI will now enroll you in a not to shady governemnt program!");
 
-                RegisteredPerson p5 = new RegisteredPerson(p4,"34xx890x768");
+                RegisteredPerson p5 = new RegisteredPerson(p4,"34x890x768");
                 System.out.println("\tCongrats, " + first +" "+ last+ " you are now enrolled in a not to shady governemnt program!");
                 System.out.println("\nHere is your official government information");
                 System.out.println("\t"+p5.toString());   

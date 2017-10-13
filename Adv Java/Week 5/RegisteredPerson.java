@@ -11,17 +11,19 @@ public class RegisteredPerson extends Person{
     private String govID;
 
     //Constructors
-    RegisteredPerson(String firstName, String lastName, String govID){
-        super(firstName, lastName);
+    RegisteredPerson(String firstName, String lastName, OCCCDate dob, String govID){
+        super(firstName, lastName, dob);
         this.govID  = new String(govID);
     }
     
     RegisteredPerson(Person p, String govID){
-        super(p.getFirstName(), p.getLastName());
+        super(p.getFirstName(), p.getLastName(), p.getDOB());
         this.govID = govID;
     }
 
-    //RegisteredPerson(RegisteredPerson rp){}
+    RegisteredPerson(RegisteredPerson rp){
+       super(rp.getFirstName(), rp.getLastName(), rp.getDOB());
+    }
     
     //Getters
     String getGovernmentID(){
@@ -34,6 +36,16 @@ public class RegisteredPerson extends Person{
         if(p == this) isEqual = true;
 
         if(!(p instanceof RegisteredPerson)) isEqual = false;   
+        
+        return isEqual;     
+    }
+
+    public boolean equals(Person p){
+        boolean isEqual = false;
+        if(p == null) isEqual = false;
+        if(p == this) isEqual = true;
+
+        if(!(p instanceof Person)) isEqual = false;   
         
         return isEqual;     
     }

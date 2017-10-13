@@ -13,13 +13,13 @@ public class Palindromes {
     public static void main(String[] args) {
         String input = "";
         
-         if(args.length>0){                                                     //Get user input from console
+         if(args.length > 0){                           //Get user input from console
              for(String s : args){
                  input += s;
              }
             System.out.println("Input palindrome : " + input);
         }
-        else{                                                                   //Get user input
+        else{                                          //Get user input
             Scanner in = new Scanner(System.in);
             System.out.print("Please enter a palindrome to test: ");
             input = in.nextLine();

@@ -26,28 +26,28 @@ public class OCCCDate{
     //Constructors
     OCCCDate(){};
 
-    OCCCDate(int day, int month, int year){
-        if(day > 0 && day < 32){
+    OCCCDate(int day, int month, int year) throws invalidOCCCDateException{
+        boolean isValid = isValidDate(day, month, year);
+
+        if(!isValid){
+            throw new invalidOCCCDateException("Test Date Validity df");
+        }else{
             this.dayOfMonth = day;
-        }else{
-            this.dayOfMonth = 1;
-        }
-        if(month > 0 && month < 13){
             this.monthOfYear = month;
-        }else{
-             this.monthOfYear = 1;
-        }
-        if(year > 1899){
             this.year = year;
-        }else{
-            this.year = 1900; //default 
         }
     }
 
-    OCCCDate(GregorianCalendar gc){
-        this.dayOfMonth = gc.get(gc.DAY_OF_MONTH);
-        this.monthOfYear = gc.get(gc.MONTH);
-        this.year = gc.get(gc.YEAR);
+    OCCCDate(GregorianCalendar gc) throws invalidOCCCDateException{
+        boolean isValid = isValidDate(gc.get(gc.DAY_OF_MONTH), gc.get(gc.MONTH), gc.get(gc.YEAR));
+
+        if(!isValid){
+            throw new invalidOCCCDateException("Test Date Validity df");
+        }else{
+            this.dayOfMonth = gc.get(gc.DAY_OF_MONTH);
+            this.monthOfYear = gc.get(gc.MONTH);
+            this.year = gc.get(gc.YEAR);
+        }
     }
 
     OCCCDate(OCCCDate d){};
@@ -147,7 +147,7 @@ public class OCCCDate{
         GregorianCalendar today = new GregorianCalendar();
         int nowYear = today.get(GregorianCalendar.YEAR);
         int dobYear = this.year;
-        int age = nowYear - dobYear > 0? nowYear - dobYear: 0;
+        int age = nowYear - dobYear > 0 ? nowYear - dobYear: 0;
 
         return age;
     }
@@ -161,16 +161,71 @@ public class OCCCDate{
         return age;
     }
 
-    public boolean equals(OCCCDate p){
-        boolean isEqual = false;
-        if(p == null) isEqual = false;
-        if(p == this) isEqual = true;
-
-        if(!(p instanceof OCCCDate)) isEqual = false;   
-        
-        return isEqual;     
+    public boolean equals(OCCCDate d){
+        if(this.getDayOfMonth()==d.dayOfMonth && this.getMonth()==d.monthOfYear && this.getYear()==d.year){
+			return true;
+		}
+		else{
+			return false;
+		}    
     }
- 
+
+    public boolean dateCheck(int day, int month, int year){
+		boolean retval=true;
+        //Month~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		//Valid month #
+		if(month < 1 || month > 12){
+			retval = false;
+		}
+
+        //Valid # days of month 30 or 31
+		if(month==4 || month==6 || month==9 || month==11){
+			if(day>30){
+				retval = false;
+			}
+		}else if(day>31){
+			retval = false;
+		}
+       
+        //Year~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		
+        //Valid year
+		if(year<0){
+			retval = false;
+		}
+	
+		//Valid leap year
+		if(year %4 !=0){
+			if(month==2 && day>28){
+				retval = false;
+			}				
+		}else if(year%100!=0){
+			if(month==2 && day>29){
+				retval = false;
+			}		
+		}
+		else if(year%400 != 0){
+			if(month==2 && day>28){
+				retval = false;
+			}
+		}
+		else{
+			retval = true;	
+		}
+		return retval;
+	}
+
+    public boolean isValidDate(int day, int month, int year){
+        GregorianCalendar cal = new GregorianCalendar(year, month, day);
+        // System.out.println(day +" " + month + " " + year);
+        // System.out.println(cal.get(cal.DAY_OF_MONTH) +" " +cal.get(cal.MONTH) + " " + cal.get(cal.YEAR));
+
+        if(day == cal.get(cal.DAY_OF_MONTH) && month == cal.get(cal.MONTH) && year == cal.get(cal.YEAR)){
+            return true;
+        }
+        return false;
+    }
+
     @Override 
     public String toString(){
 

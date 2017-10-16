@@ -2,13 +2,9 @@
  * Tyler Hunt
  * Advanced Java
  * OCCC Fall 2017
- * Week 6
- * Due: 10/1/2107
- * Hunt_W6_Classes
+ * Week 7
 */
 import java.util.Scanner;
-
-import org.omg.CORBA.PUBLIC_MEMBER;
 
 public class invalidOCCCDateException extends IllegalArgumentException{
     public String msg;

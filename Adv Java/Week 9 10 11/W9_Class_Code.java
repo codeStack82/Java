@@ -10,10 +10,12 @@ import java.awt.event.*; //Event sub library!!!
 //4 widgets - Maps / videos / or other media
 //Naming TJH, zip folder and submit
 
+//Need to this class name for each widget  //mousedemopanel
+
 public class W9_Class_Code extends JFrame implements MouseListener, MouseMotionListener{
 	//GLOBAL VARIABLES
-	public static final int WIDTH = 600;
-	public static final int HEIGHT = 600;
+	public static final int WIDTH = 400;
+	public static final int HEIGHT = 400;
 	JPanel northPanel, centerPanel, southPanel;//Only declaring
 	JLabel titleLabel; //Only declaring
 	JLabel xCoord, yCoord;
@@ -23,19 +25,16 @@ public class W9_Class_Code extends JFrame implements MouseListener, MouseMotionL
 	
 	public W9_Class_Code() {
 		super();
-		setSize(WIDTH, HEIGHT); //Setting size
-		setTitle("My Mouse Demo"); //Title
-		
-		setDefaultCloseOperation(EXIT_ON_CLOSE); //Always make your program exit!!!
-		
-		Container contentPane = getContentPane();
-		contentPane.setLayout(new BorderLayout()); //Creating border layout
-		
-		titleLabel = new JLabel ("Insert graphic here");
-		titleLabel.setFont(new Font("Arial", Font.PLAIN, 40));
+		// setSize(WIDTH, HEIGHT); //Setting size
+		// //setTitle("My Mouse Demo"); //Title
+		// //setDefaultCloseOperation(EXIT_ON_CLOSE); //Always make your program exit!!!
+		// setLayout(new BorderLayout(5,5));
+
+		titleLabel = new JLabel("Insert graphic here");
+		//titleLabel.setFont(new Font("Arial", Font.PLAIN, 40));
 		northPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		northPanel.add(titleLabel);
-		contentPane.add(northPanel, BorderLayout.NORTH);
+		add(northPanel, BorderLayout.NORTH);
 		
 		
 		//X Y 
@@ -44,18 +43,18 @@ public class W9_Class_Code extends JFrame implements MouseListener, MouseMotionL
 		centerPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		centerPanel.add(xCoord);
 		centerPanel.add(yCoord);
-		contentPane.add(centerPanel, BorderLayout.CENTER);
-		xCoord.setFont(new Font("Arial", Font.PLAIN, 40));
-		yCoord.setFont(new Font("Arial", Font.PLAIN, 40));
+		add(centerPanel, BorderLayout.CENTER);
+		// xCoord.setFont(new Font("Arial", Font.PLAIN, 40));
+		// yCoord.setFont(new Font("Arial", Font.PLAIN, 40));
 		
 		
 		//Buttons
 		leftButton = new JButton("LEFT");
 		middleButton = new JButton("CENTER");
 		rightButton = new JButton("RIGHT");
-		leftButton.setFont(new Font("Arial", Font.PLAIN, 40));
-		middleButton.setFont(new Font("Arial", Font.PLAIN, 40));
-		rightButton.setFont(new Font("Arial", Font.PLAIN, 40));
+		// leftButton.setFont(new Font("Arial", Font.PLAIN, 40));
+		// middleButton.setFont(new Font("Arial", Font.PLAIN, 40));
+		// rightButton.setFont(new Font("Arial", Font.PLAIN, 40));
 		
 		c = leftButton.getBackground();
 		
@@ -63,7 +62,7 @@ public class W9_Class_Code extends JFrame implements MouseListener, MouseMotionL
 		southPanel.add(leftButton);
 		southPanel.add(middleButton);
 		southPanel.add(rightButton);
-		contentPane.add(southPanel, BorderLayout.SOUTH);
+		add(southPanel, BorderLayout.SOUTH);
 		
 		//Add mouse motion listener
 		addMouseListener(this);
@@ -76,8 +75,8 @@ public class W9_Class_Code extends JFrame implements MouseListener, MouseMotionL
 		setVisible(true); //Make visible needs to be after everything so everything can be seen
 	}
 	
-	public static void main (String [] args) { 
-		Demo md = new Demo(); //invoke the constructor
+	public static void main (String[] args) { 
+		W9_Class_Code md = new W9_Class_Code(); //invoke the constructor
 	}
 	
 	//MouseListener Methods

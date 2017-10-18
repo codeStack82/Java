@@ -1,13 +1,12 @@
 import java.awt.*;
 import javax.swing.*;
 
-public class GenerisGuiApp extends JPanel{
+public class GenericGuiApp extends JPanel{
     //Use for week 9 homework
     public static final int WIDTH   = 400;
     public static final int HEIGHT  = 400;
 
-
-    public GenerisGuiApp(){
+    public GenericGuiApp(){
         super();
 
         //Set basic frame params  //from javax.swing
@@ -15,11 +14,13 @@ public class GenerisGuiApp extends JPanel{
         setTitle("Mouse Demo");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
+        setLayout(new BorderLayout(5,5));
         //Main panel -> from java.awt
         Container contentPane = getContentPane();
-        contentPane.setLayout(new BorderLayout(5, 5));
+        contentPane.setLayout(new BorderLayout());
 
-        JPanel jp = new MouseDemoPanel();
+        JPanel jp = new W9_Class_Code();
+        add(jp);
 
         setVisible(true);
         setResizable(false);
@@ -27,7 +28,7 @@ public class GenerisGuiApp extends JPanel{
     }
 
     public static void main(String[] args){
-        GenerisGuiApp = new GenerisGuiApp();
+        GenericGuiApp = new GenericGuiApp();
     }
 
 }

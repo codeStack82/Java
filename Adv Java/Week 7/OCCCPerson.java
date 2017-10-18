@@ -10,26 +10,26 @@
 
 import java.util.Date;
 
-public class Person{
+public class OCCCPerson{
 
     private String firstName;
     private String lastName;
     private OCCCDate dob;
         
     //Constructors
-    public Person(String firstName, String lastName){
+    public OCCCPerson(String firstName, String lastName){
         this.firstName  = new String(firstName);
         this.lastName   = new String(lastName);
     }
 
     // Date OCCCDate
-    public Person(String firstName, String lastName, OCCCDate dob){
+    public OCCCPerson(String firstName, String lastName, OCCCDate dob){
         this.firstName  = new String(firstName);
         this.lastName   = new String(lastName);
         this.dob        = dob;
     }
 
-    public Person(Person P){}  //Copy constructor
+    public OCCCPerson(OCCCPerson P){}  //Copy constructor
 
     //Getters
     public String getFirstName(){
@@ -90,11 +90,11 @@ public class Person{
         return result;
     }
 
-    public boolean equals(Person p){
+    public boolean equals(OCCCPerson p){
         boolean isEqual = false;
         if(p == null) isEqual = false;
         if(p == this) isEqual = true;
-        if(!(p instanceof Person)) isEqual = false;   
+        if(!(p instanceof OCCCPerson)) isEqual = false;   
         return isEqual;     
     }
 }

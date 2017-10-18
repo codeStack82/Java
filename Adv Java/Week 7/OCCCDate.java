@@ -24,13 +24,13 @@ public class OCCCDate{
     public static final boolean OCCCDATE_STYLE_NAMES = false;
 
     //Constructors
-    OCCCDate(){};
+    OCCCDate()throws InvalidOCCCDateException{};
 
-    OCCCDate(int day, int month, int year) throws invalidOCCCDateException{
+    OCCCDate(int day, int month, int year) throws InvalidOCCCDateException{
         boolean isValid = isValidDate(day, month, year);
 
         if(!isValid){
-            throw new invalidOCCCDateException("Test Date Validity df");
+            throw new InvalidOCCCDateException("The date: " + month +"/" + day + "/"+ year +" in not a valid Date");
         }else{
             this.dayOfMonth = day;
             this.monthOfYear = month;
@@ -38,11 +38,11 @@ public class OCCCDate{
         }
     }
 
-    OCCCDate(GregorianCalendar gc) throws invalidOCCCDateException{
+    OCCCDate(GregorianCalendar gc) throws InvalidOCCCDateException{
         boolean isValid = isValidDate(gc.get(gc.DAY_OF_MONTH), gc.get(gc.MONTH), gc.get(gc.YEAR));
 
         if(!isValid){
-            throw new invalidOCCCDateException("Test Date Validity df");
+            throw new InvalidOCCCDateException("Test Date Validity df");
         }else{
             this.dayOfMonth = gc.get(gc.DAY_OF_MONTH);
             this.monthOfYear = gc.get(gc.MONTH);
@@ -50,7 +50,7 @@ public class OCCCDate{
         }
     }
 
-    OCCCDate(OCCCDate d){};
+    OCCCDate(OCCCDate d)throws InvalidOCCCDateException{};
 
     //Getters
     public int getDayOfMonth(){
@@ -170,60 +170,27 @@ public class OCCCDate{
 		}    
     }
 
-    public boolean dateCheck(int day, int month, int year){
-		boolean retval=true;
-        //Month~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		//Valid month #
-		if(month < 1 || month > 12){
-			retval = false;
-		}
-
-        //Valid # days of month 30 or 31
-		if(month==4 || month==6 || month==9 || month==11){
-			if(day>30){
-				retval = false;
-			}
-		}else if(day>31){
-			retval = false;
-		}
-       
-        //Year~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		
-        //Valid year
-		if(year<0){
-			retval = false;
-		}
-	
-		//Valid leap year
-		if(year %4 !=0){
-			if(month==2 && day>28){
-				retval = false;
-			}				
-		}else if(year%100!=0){
-			if(month==2 && day>29){
-				retval = false;
-			}		
-		}
-		else if(year%400 != 0){
-			if(month==2 && day>28){
-				retval = false;
-			}
-		}
-		else{
-			retval = true;	
-		}
-		return retval;
-	}
-
     public boolean isValidDate(int day, int month, int year){
         GregorianCalendar cal = new GregorianCalendar(year, month, day);
-        // System.out.println(day +" " + month + " " + year);
-        // System.out.println(cal.get(cal.DAY_OF_MONTH) +" " +cal.get(cal.MONTH) + " " + cal.get(cal.YEAR));
+        boolean isLeapYear = cal.isLeapYear(year);
 
-        if(day == cal.get(cal.DAY_OF_MONTH) && month == cal.get(cal.MONTH) && year == cal.get(cal.YEAR)){
-            return true;
-        }
-        return false;
+        // System.out.println(day +" " + month + " " + year);
+        // System.out.println(cal.get(cal.DAY_OF_MONTH) +" " + cal.get(cal.MONTH) + " " + cal.get(cal.YEAR));
+
+
+        if( month < 1 || month > 12) return false;                       // validate month number
+        if( year < 0)	return false;                                    // validate year number
+        if(month == 4 || month == 6 || month == 9 || month == 11){       // validate days in month
+			if( day > 30) return false;	
+		}else if(day > 31) return false;
+        if(!isLeapYear && month == 2 && day > 28)  return false;          //validate leap year extra day
+        if(isLeapYear && month == 2 && day > 29)  return false;          //validate leap year extra day    
+        return true;
+    }
+
+    public boolean isLeapYear(){
+        GregorianCalendar cal = new GregorianCalendar(this.year, this.monthOfYear, this.dayOfMonth);
+        return cal.isLeapYear(year);
     }
 
     @Override 

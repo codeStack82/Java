@@ -6,15 +6,15 @@
 */
 import java.util.Scanner;
 
-public class invalidOCCCDateException extends IllegalArgumentException{
+public class InvalidOCCCDateException extends IllegalArgumentException{
     public String msg;
     public static final String DEFAULT_INVALDIOCCCDATEEXCEPTION_MESSAGE = "Invalid Date";
-        public invalidOCCCDateException(){
+        public InvalidOCCCDateException(){
             super();
             msg = DEFAULT_INVALDIOCCCDATEEXCEPTION_MESSAGE;
         }
 
-        public invalidOCCCDateException(String msg){
+        public InvalidOCCCDateException(String msg){
             super();
             this.msg = new String(msg);
         }

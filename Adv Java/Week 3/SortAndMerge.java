@@ -210,27 +210,21 @@ public class SortAndMerge {
        return fileName = ""; 
     }
     
-    //Method to sort array using merge sort
-    public static void mergeSort(int[] arr){
-        if(arr.length > 1){
-            
-            //Split array and recursivly sort left half
-            int[] leftHalf = new int[arr.length / 2];
-            System.arraycopy(arr, 0, leftHalf,0, arr.length / 2);
-            mergeSort(leftHalf);
-            
-            //Get right hlaf length
-            int rightHalfLength = arr.length - arr.length /2;
-            
-            //Get right half and recursivly sort right half
-            int[] rightHalf = new int[rightHalfLength];
-            System.arraycopy(arr, arr.length / 2, rightHalf,0, rightHalfLength);
-            mergeSort(rightHalf);
-            
-            //Merge arrays together and return
-            mergeArrays(leftHalf, rightHalf, arr);
-        }
+void mergeSort(int arr[], int l, int r)
+{
+    if (l < r)
+    {
+        // Same as (l+r)/2, but avoids overflow for
+        // large l and h
+        int m = l+(r-l)/2;
+ 
+        // Sort first and second halves
+        mergeSort(arr, l, m);
+        mergeSort(arr, m+1, r);
+ 
+        merge(arr, l, m, r);
     }
+}
     
     //Method to merge arrays
     public static void mergeArrays(int[] arr1, int[] arr2, int[] temp){

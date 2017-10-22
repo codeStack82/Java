@@ -2,8 +2,8 @@
  * Tyler Hunt
  * Advanced Java
  * OCCC Fall 2017
- * Week 48
- * Due: xx/xx/xxxx
+ * Week 8
+ * Due: 10/22/2017
 */
 
 import java.io.File;

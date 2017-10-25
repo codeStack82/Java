@@ -2,6 +2,10 @@
 //OCCC Fall 2017
 //Mouse Demo
 
+//Zabrina Antry
+//OCCC Fall 2017
+//Mouse Demo
+
 //Can use the mouse demo for one of our widgets
 
 import java.awt.*;  //For Container
@@ -13,25 +17,25 @@ import java.awt.event.*; //Event sub library!!!
 
 //Need to this class name for each widget  //mousedemopanel
 
-public class W9_Class_Code extends JPanel implements MouseListener, MouseMotionListener{
+public class W0_ClassCode extends JFrame{
 	//GLOBAL VARIABLES
-	public static final int WIDTH  = 500;
-	public static final int HEIGHT = 500;
-	JPanel northPanel, centerPanel, southPanel;	//Only declaring
-	JLabel titleLabel; 							//Only declaring
+	public static final int WIDTH = 400;
+	public static final int HEIGHT = 400;
+	JPanel northPanel, centerPanel, southPanel;//Only declaring
+	JLabel titleLabel; //Only declaring
 	JLabel xCoord, yCoord;
 	JButton leftButton, middleButton, rightButton;
 	
 	Color c;
 	
-	public W9_Class_Code() {
+	public W0_ClassCode() {
 		super();
 		// setSize(WIDTH, HEIGHT); //Setting size
 		// //setTitle("My Mouse Demo"); //Title
 		// //setDefaultCloseOperation(EXIT_ON_CLOSE); //Always make your program exit!!!
 		// setLayout(new BorderLayout(5,5));
 
-		//titleLabel = new JLabel("Insert graphic here");
+		titleLabel = new JLabel("Insert graphic here");
 		//titleLabel.setFont(new Font("Arial", Font.PLAIN, 40));
 		northPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		northPanel.add(titleLabel);
@@ -76,9 +80,9 @@ public class W9_Class_Code extends JPanel implements MouseListener, MouseMotionL
 		setVisible(true); //Make visible needs to be after everything so everything can be seen
 	}
 	
-	// public static void main (String[] args) { 
-	// 	W9_Class_Code md = new W9_Class_Code(); //invoke the constructor
-	// }
+	public static void main (String[] args) { 
+		W9_Class_Code md = new W9_Class_Code(); //invoke the constructor
+	}
 	
 	//MouseListener Methods
 	@Override

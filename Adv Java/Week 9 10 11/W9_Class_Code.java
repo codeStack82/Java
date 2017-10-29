@@ -76,9 +76,9 @@ public class W9_Class_Code extends JPanel implements MouseListener, MouseMotionL
 		setVisible(true); //Make visible needs to be after everything so everything can be seen
 	}
 	
-	// public static void main (String[] args) { 
-	// 	W9_Class_Code md = new W9_Class_Code(); //invoke the constructor
-	// }
+	public static void main (String[] args) { 
+		W9_Class_Code md = new W9_Class_Code(); //invoke the constructor
+	}
 	
 	//MouseListener Methods
 	@Override

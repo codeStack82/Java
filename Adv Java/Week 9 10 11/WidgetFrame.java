@@ -11,23 +11,25 @@ public class WidgetFrame extends JFrame{
 
         //Set basic frame params  //from javax.swing
         setSize(WIDTH, HEIGHT);
-        this.setTitle("Mouse Demo");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setLayout(new BorderLayout(5,5));
-        //Main panel -> from java.awt
+        this.setLayout(new BorderLayout());
+
+
         Container contentPane = getContentPane();
         contentPane.setLayout(new BorderLayout());
 
-        JPanel jp = new CarSales();
-        this.add(jp);
+        JPanel jp1 = new Header();
+        this.add(jp1, BorderLayout.NORTH);
+
+        JPanel jp2 = new MakeModel();
+        this.add(jp2, BorderLayout.WEST);
 
         this.setVisible(true);
-        setResizable(false);
+        //setResizable(false);
         
     }
 
     public static void main(String[] args){
         WidgetFrame n = new WidgetFrame();
     }
-
 }

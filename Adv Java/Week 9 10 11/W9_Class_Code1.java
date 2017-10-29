@@ -23,6 +23,9 @@ public class W9_Class_Code1 extends JPanel implements MouseListener, MouseMotion
 	
 	Color c;
 	
+	//This one needs to have more features added to it.....like the backgroud changes color 
+	// as the mouse moves or if the mouse event is clicked.  etc  
+
 	public W9_Class_Code1() {
 		super();
 		// setSize(WIDTH, HEIGHT); //Setting size

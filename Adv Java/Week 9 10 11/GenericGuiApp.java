@@ -3,8 +3,8 @@ import javax.swing.*;
 
 public class GenericGuiApp extends JFrame{
     //Use for week 9 homework
-    public static final int WIDTH   = 400;
-    public static final int HEIGHT  = 400;
+    public static final int WIDTH   = 256;
+    public static final int HEIGHT  = 256;
 
     public GenericGuiApp(){
         super();
@@ -14,7 +14,7 @@ public class GenericGuiApp extends JFrame{
         // setTitle("Mouse Demo");
         // setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        setLayout(new BorderLayout(5,5));
+        setLayout(new BorderLayout());
         //Main panel -> from java.awt
         Container contentPane = getContentPane();
         contentPane.setLayout(new BorderLayout());

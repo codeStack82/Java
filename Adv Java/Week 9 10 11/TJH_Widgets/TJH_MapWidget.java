@@ -5,6 +5,7 @@
 *   Due: 10/29/17
 *   Details: TJH_MapWidget
 */
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
